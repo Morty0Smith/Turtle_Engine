@@ -1,6 +1,6 @@
 object TurtleDesigner: TFXGuiForm
-  Left = 1515
-  Top = 76
+  Left = 1537
+  Top = 401
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleDesigner'
   ClientHeight = 1000

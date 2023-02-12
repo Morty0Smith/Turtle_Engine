@@ -570,6 +570,10 @@ public class TurtleDesigner extends Application {
     XCoordinates.clear();
     YCoordinates.clear();
     Paths.clear();
+    PathIndexesStart.clear();
+    PathIndexesEnd.clear();
+    PathIndexesArrayPosition.clear();
+    CurvedPathTrueIndexes.clear();
     numberPaths = -1;
     slider1.setMin(-50);
     slider1.setMax(50);
@@ -680,7 +684,6 @@ public class TurtleDesigner extends Application {
   public void ableEdit(boolean EditEnabled) {
     EditTrue = EditEnabled;
     if (EditEnabled) {
-      bDelete.setVisible(true);
       lIndex.setVisible(true);
       numberField9.setVisible(true);
       bEdit.setText("Save");
@@ -774,7 +777,9 @@ public class TurtleDesigner extends Application {
     int Index1 = numberField3.getInt();
     int Index2 = numberField4.getInt();
     UpdatePathArrayPositions();
-    if (! (Index1 == Index2)) {
+    boolean StartOutOfBounds = Index1 > XCoordinates.size() - 1;
+    boolean EndOutOfBounds = Index2 > XCoordinates.size() - 1;
+    if (!(Index1 == Index2) && !StartOutOfBounds && !EndOutOfBounds) {
       PathIndexesStart.add(numberField3.getInt());
       PathIndexesEnd.add(numberField4.getInt());
       CurvedPathTrueIndexes.add(checkBox3.isSelected());
@@ -784,21 +789,9 @@ public class TurtleDesigner extends Application {
       Paths.add(Index1);
       Paths.add(Index2);
       numberPaths++;
-      if (textArea2.getText().isEmpty()) {
-      if (checkBox3.isSelected()) {
-        textArea2.setText("- Index 0: " + "Curved path with " + numberField5.getInt() + "% ammount from point " + numberField3.getInt() + " to point" + numberField4.getInt());
-      } else {
-        textArea2.setText("- Index 0: " + "Straight path from point " + numberField3.getInt() + " to point " + numberField4.getInt());
-      } // end of if-else
+      UpdatePathsTextField();
     } else {
-      if (checkBox3.isSelected()) {
-        textArea2.appendText("\n- Index " + numberPaths + ": " + "Curved path with " + numberField5.getInt() + "% ammount from point " + numberField3.getInt() + " to point" + numberField4.getInt());
-      } else {
-        textArea2.appendText("\n- Index " + numberPaths + ": " + "Straight path from point " + numberField3.getInt() + " to point " + numberField4.getInt());
-      } // end of if-else
-    } // end of if-else
-    } else {
-      System.out.println("You can't draw a path between two equal points");
+      System.out.println("Point Index out of bounds or equal");
     } // end of if-else
     PrviewDraw();
   } // end of bAddToPaths_Action
@@ -903,6 +896,24 @@ public class TurtleDesigner extends Application {
       } // end of if-else
     }
   }
+  
+  public void UpdatePathsTextField() {
+    textArea2.setText("");
+    if (Paths.size() > 0) {
+      if (CurvedPathTrueIndexes.get(0)) {
+      textArea2.setText("- Index 0: " + "Curved path with " + Paths.get(0) * -1 + "% ammount from point " + Paths.get(1) + " to point" + Paths.get(2));  
+      } else {
+        textArea2.setText("- Index 0: " + "Straight path from point " + Paths.get(0) + " to point " + Paths.get(1));  
+      } // end of if-else
+      for (int i = 1; i < CurvedPathTrueIndexes.size(); i++) {
+        if (CurvedPathTrueIndexes.get(i)) {
+          textArea2.appendText("\n- Index " + i + ": " + "Curved path with " + Paths.get(PathIndexesArrayPosition.get(i)) * -1 + "% ammount from point " + Paths.get(PathIndexesArrayPosition.get(i) + 1) + " to point " + Paths.get(PathIndexesArrayPosition.get(i) + 2));
+        } else {
+          textArea2.appendText("\n- Index " + i + ": " + "Straight path from point " +  Paths.get(PathIndexesArrayPosition.get(i)) + " to point " +  Paths.get(PathIndexesArrayPosition.get(i) + 1));
+        } // end of if-else
+      }
+    } // end of if
+  }
   public void bEdit_Action(Event evt) {
     // TODO hier Quelltext einfügen
     if (XCoordinates.size() == 0) {
@@ -922,17 +933,7 @@ public class TurtleDesigner extends Application {
   } // end of bEdit_Action
 
   public void bDelete_Action(Event evt) {
-    // TODO hier Quelltext einfügen
-    int deleteIndex = numberField9.getInt();
-    XCoordinates.remove(deleteIndex);
-    YCoordinates.remove(deleteIndex);
-    UpdatePointTextField();
-    PrviewDraw();
-    if (XCoordinates.size() == 0) {
-      ableEdit(false);
-    } else {
-      numberField9.setInt(0);
-    } // end of if-else
+    
   } // end of bDelete_Action
 
   public void bEdit1_Action(Event evt) {
@@ -961,7 +962,6 @@ public class TurtleDesigner extends Application {
           CurvedPathTrueIndexes.set(InputIndex, true);
           Paths.add(0);
           for (int i = Paths.size() - 1; i > ArrayPostion; i--) {
-            System.out.println("Index: " + i + " , Old Value: " + Paths.get(i) + " , New Value : " + Paths.get(i - 1));
             Paths.set(i, Paths.get(i - 1));
           }
           Paths.set(PathIndexesArrayPosition.get(InputIndex), newCurveAmmount); 
@@ -971,18 +971,16 @@ public class TurtleDesigner extends Application {
           CurvedPathTrueIndexes.set(InputIndex, false);
           System.out.println(Paths);
           for (int i = ArrayPostion; i < Paths.size() - 1; i++) {
-            System.out.println("Index: " + i + " , Old Value: " + Paths.get(i) + " , New Value : " + Paths.get(i + 1));
             Paths.set(i, Paths.get(i + 1));
             UpdatePathArrayPositions();
           }
-          System.out.println(Paths);
           Paths.remove(Paths.size() - 1);
           UpdatePathArrayPositions();
-          System.out.println(PathIndexesArrayPosition);
         } // end of if
         PathIndexesStart.set(InputIndex, newStart);
         PathIndexesEnd.set(InputIndex, newEnd);
         PrviewDraw();
+        UpdatePathsTextField();
         AbleEdit2(false);
       } else {
         AbleEdit2(true);
@@ -992,7 +990,22 @@ public class TurtleDesigner extends Application {
 
   public void bDelete1_Action(Event evt) {
     // TODO hier Quelltext einfügen
-    
+    int InputIndex = numberField10.getInt();
+    int PAthIndex = PathIndexesArrayPosition.get(InputIndex);
+    if (CurvedPathTrueIndexes.get(InputIndex)) {
+      Paths.remove(PAthIndex + 2);
+      Paths.remove(PAthIndex + 1);
+      Paths.remove(PAthIndex);
+    } else {
+      Paths.remove(PAthIndex + 1);
+      Paths.remove(PAthIndex);
+    } // end of if-else
+    PathIndexesStart.remove(InputIndex);
+    PathIndexesEnd.remove(InputIndex);
+    CurvedPathTrueIndexes.remove(InputIndex);
+    UpdatePathArrayPositions();
+    UpdatePathsTextField();
+    PrviewDraw();
   } // end of bDelete1_Action
 
   // Ende Methoden
