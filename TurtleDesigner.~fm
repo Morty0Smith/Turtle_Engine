@@ -1,9 +1,9 @@
 object TurtleDesigner: TFXGuiForm
-  Left = 1117
-  Top = 501
+  Left = 1515
+  Top = 76
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleDesigner'
-  ClientHeight = 1003
+  ClientHeight = 1000
   ClientWidth = 1425
   Color = clBtnFace
   ParentFont = True
@@ -208,7 +208,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField1: TFXNumberField
     Tag = 103
-    Left = 970
+    Left = 1042
     Top = 319
     Width = 59
     Height = 25
@@ -221,7 +221,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 970
+    LayoutX = 1042
     LayoutY = 319
     Disable = False
     Cache = False
@@ -237,7 +237,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField2: TFXNumberField
     Tag = 103
-    Left = 1069
+    Left = 1141
     Top = 320
     Width = 59
     Height = 25
@@ -250,7 +250,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 1069
+    LayoutX = 1141
     LayoutY = 320
     Disable = False
     Cache = False
@@ -266,7 +266,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object lX1: TFXLabel
     Tag = 101
-    Left = 944
+    Left = 1016
     Top = 320
     Width = 25
     Height = 25
@@ -278,7 +278,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 944
+    LayoutX = 1016
     LayoutY = 320
     Disable = False
     Cache = False
@@ -299,7 +299,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object lY: TFXLabel
     Tag = 101
-    Left = 1040
+    Left = 1112
     Top = 320
     Width = 25
     Height = 25
@@ -311,7 +311,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1040
+    LayoutX = 1112
     LayoutY = 320
     Disable = False
     Cache = False
@@ -402,7 +402,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bAddToPoints: TFXButton
     Tag = 105
-    Left = 1146
+    Left = 1218
     Top = 319
     Width = 99
     Height = 25
@@ -414,7 +414,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1146
+    LayoutX = 1218
     LayoutY = 319
     Disable = False
     Cache = False
@@ -438,7 +438,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bPreview: TFXButton
     Tag = 105
-    Left = 1254
+    Left = 1326
     Top = 317
     Width = 75
     Height = 25
@@ -450,7 +450,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1254
+    LayoutX = 1326
     LayoutY = 317
     Disable = False
     Cache = False
@@ -533,8 +533,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object bRefresh: TFXButton
     Tag = 105
-    Left = 430
-    Top = 726
+    Left = 414
+    Top = 678
     Width = 75
     Height = 25
     Hint = 'button1'
@@ -545,8 +545,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 430
-    LayoutY = 726
+    LayoutX = 414
+    LayoutY = 678
     Disable = False
     Cache = False
     dragOver = ''
@@ -635,7 +635,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object lPathStart1: TFXLabel
     Tag = 101
-    Left = 893
+    Left = 941
     Top = 615
     Width = 86
     Height = 28
@@ -647,7 +647,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 893
+    LayoutX = 941
     LayoutY = 615
     Disable = False
     Cache = False
@@ -668,7 +668,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField3: TFXNumberField
     Tag = 103
-    Left = 978
+    Left = 1026
     Top = 615
     Width = 43
     Height = 25
@@ -681,7 +681,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 978
+    LayoutX = 1026
     LayoutY = 615
     Disable = False
     Cache = False
@@ -697,7 +697,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField4: TFXNumberField
     Tag = 103
-    Left = 1109
+    Left = 1157
     Top = 616
     Width = 43
     Height = 25
@@ -710,7 +710,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 1109
+    LayoutX = 1157
     LayoutY = 616
     Disable = False
     Cache = False
@@ -726,7 +726,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object lPathEnd: TFXLabel
     Tag = 101
-    Left = 1032
+    Left = 1080
     Top = 616
     Width = 73
     Height = 25
@@ -738,7 +738,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1032
+    LayoutX = 1080
     LayoutY = 616
     Disable = False
     Cache = False
@@ -759,7 +759,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bAddToPaths: TFXButton
     Tag = 105
-    Left = 1165
+    Left = 1213
     Top = 615
     Width = 91
     Height = 25
@@ -771,7 +771,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1165
+    LayoutX = 1213
     LayoutY = 615
     Disable = False
     Cache = False
@@ -795,7 +795,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bPreview1: TFXButton
     Tag = 105
-    Left = 1271
+    Left = 1319
     Top = 615
     Width = 75
     Height = 25
@@ -807,7 +807,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 1271
+    LayoutX = 1319
     LayoutY = 615
     Disable = False
     Cache = False
@@ -1055,8 +1055,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object bGenerateCode: TFXButton
     Tag = 105
-    Left = 679
-    Top = 740
+    Left = 399
+    Top = 724
     Width = 107
     Height = 25
     Hint = 'button1'
@@ -1067,8 +1067,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 679
-    LayoutY = 740
+    LayoutX = 399
+    LayoutY = 724
     Disable = False
     Cache = False
     dragOver = ''
@@ -1117,7 +1117,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField6: TFXNumberField
     Tag = 103
-    Left = 209
+    Left = 81
     Top = 765
     Width = 75
     Height = 25
@@ -1130,7 +1130,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 209
+    LayoutX = 81
     LayoutY = 765
     Disable = False
     Cache = False
@@ -1146,8 +1146,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField7: TFXNumberField
     Tag = 103
-    Left = 133
-    Top = 1051
+    Left = 469
+    Top = 763
     Width = 75
     Height = 25
     Cursor = crIBeam
@@ -1159,8 +1159,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 133
-    LayoutY = 1051
+    LayoutX = 469
+    LayoutY = 763
     Disable = False
     Cache = False
     dragOver = ''
@@ -1175,7 +1175,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bSave: TFXButton
     Tag = 105
-    Left = 302
+    Left = 174
     Top = 765
     Width = 75
     Height = 25
@@ -1187,7 +1187,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 302
+    LayoutX = 174
     LayoutY = 765
     Disable = False
     Cache = False
@@ -1211,8 +1211,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object bSave1: TFXButton
     Tag = 105
-    Left = 329
-    Top = 1053
+    Left = 665
+    Top = 765
     Width = 75
     Height = 25
     Hint = 'button2'
@@ -1223,8 +1223,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 329
-    LayoutY = 1053
+    LayoutX = 665
+    LayoutY = 765
     Disable = False
     Cache = False
     dragOver = ''
@@ -1247,7 +1247,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object lScale1: TFXLabel
     Tag = 101
-    Left = 149
+    Left = 21
     Top = 767
     Width = 46
     Height = 20
@@ -1259,7 +1259,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 149
+    LayoutX = 21
     LayoutY = 767
     Disable = False
     Cache = False
@@ -1280,8 +1280,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object lOffset: TFXLabel
     Tag = 101
-    Left = 38
-    Top = 1055
+    Left = 374
+    Top = 767
     Width = 54
     Height = 20
     Hint = 'label2'
@@ -1292,8 +1292,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 38
-    LayoutY = 1055
+    LayoutX = 374
+    LayoutY = 767
     Disable = False
     Cache = False
     dragOver = ''
@@ -1313,8 +1313,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object numberField8: TFXNumberField
     Tag = 103
-    Left = 243
-    Top = 1049
+    Left = 579
+    Top = 761
     Width = 75
     Height = 25
     Cursor = crIBeam
@@ -1326,8 +1326,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 243
-    LayoutY = 1049
+    LayoutX = 579
+    LayoutY = 761
     Disable = False
     Cache = False
     dragOver = ''
@@ -1342,8 +1342,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object lX: TFXLabel
     Tag = 101
-    Left = 120
-    Top = 1048
+    Left = 456
+    Top = 760
     Width = 25
     Height = 25
     Hint = 'label1'
@@ -1354,8 +1354,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 120
-    LayoutY = 1048
+    LayoutX = 456
+    LayoutY = 760
     Disable = False
     Cache = False
     dragOver = ''
@@ -1375,8 +1375,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object lY2: TFXLabel
     Tag = 101
-    Left = 228
-    Top = 1048
+    Left = 564
+    Top = 760
     Width = 30
     Height = 28
     Hint = 'label1'
@@ -1387,8 +1387,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 228
-    LayoutY = 1048
+    LayoutX = 564
+    LayoutY = 760
     Disable = False
     Cache = False
     dragOver = ''
@@ -1408,7 +1408,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object bApply: TFXButton
     Tag = 105
-    Left = 387
+    Left = 259
     Top = 768
     Width = 75
     Height = 25
@@ -1420,7 +1420,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 387
+    LayoutX = 259
     LayoutY = 768
     Disable = False
     Cache = False
@@ -1444,8 +1444,8 @@ object TurtleDesigner: TFXGuiForm
   end
   object bApply1: TFXButton
     Tag = 105
-    Left = 422
-    Top = 1055
+    Left = 758
+    Top = 767
     Width = 75
     Height = 25
     Hint = 'button4'
@@ -1456,8 +1456,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 422
-    LayoutY = 1055
+    LayoutX = 758
+    LayoutY = 767
     Disable = False
     Cache = False
     dragOver = ''
@@ -1478,43 +1478,10 @@ object TurtleDesigner: TFXGuiForm
     CancelButton = False
     DefaultButton = False
   end
-  object lEdit: TFXLabel
-    Tag = 101
-    Left = 839
-    Top = 513
-    Width = 46
-    Height = 20
-    Hint = 'label1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 839
-    LayoutY = 513
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 20
-    PrefWidth = 46
-    SnapToPixel = False
-    Alignment = CENTER_LEFT
-    ContentDisplay = _CD_LEFT
-    EllipsisString = '...'
-    Underline = False
-    TextFill = 3355443
-    GraphicTextGap = 4
-    MnemonicParsing = False
-    Text = 'Edit:'
-    TextAlignment = _TA_LEFT
-    WrapText = False
-  end
   object numberField9: TFXNumberField
     Tag = 103
-    Left = 943
-    Top = 510
+    Left = 887
+    Top = 318
     Width = 43
     Height = 25
     Cursor = crIBeam
@@ -1526,8 +1493,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 943
-    LayoutY = 510
+    LayoutX = 887
+    LayoutY = 318
     Disable = False
     Cache = False
     dragOver = ''
@@ -1540,173 +1507,10 @@ object TurtleDesigner: TFXGuiForm
     PrefColumnCount = 12
     action = ''
   end
-  object numberField10: TFXNumberField
-    Tag = 103
-    Left = 1035
-    Top = 510
-    Width = 51
-    Height = 25
-    Cursor = crIBeam
-    Hint = 'numberField10'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clWhite
-    LayoutX = 1035
-    LayoutY = 510
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 51
-    SnapToPixel = False
-    Text = ''
-    Editable = True
-    Alignment = CENTER_LEFT
-    PrefColumnCount = 12
-    action = ''
-  end
-  object numberField11: TFXNumberField
-    Tag = 103
-    Left = 1137
-    Top = 512
-    Width = 47
-    Height = 25
-    Cursor = crIBeam
-    Hint = 'numberField11'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clWhite
-    LayoutX = 1137
-    LayoutY = 512
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 47
-    SnapToPixel = False
-    Text = ''
-    Editable = True
-    Alignment = CENTER_LEFT
-    PrefColumnCount = 12
-    action = ''
-  end
-  object bPreview2: TFXButton
-    Tag = 105
-    Left = 1208
-    Top = 507
-    Width = 75
-    Height = 25
-    Hint = 'button1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 1208
-    LayoutY = 507
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
-    SnapToPixel = False
-    Alignment = CENTER
-    ContentDisplay = _CD_LEFT
-    EllipsisString = '...'
-    Underline = False
-    TextFill = 3355443
-    GraphicTextGap = 4
-    MnemonicParsing = False
-    Text = 'Preview'
-    TextAlignment = _TA_LEFT
-    WrapText = False
-    action = 'bPreview2_Action'
-    CancelButton = False
-    DefaultButton = False
-  end
-  object bApply2: TFXButton
-    Tag = 105
-    Left = 1305
-    Top = 507
-    Width = 75
-    Height = 25
-    Hint = 'button2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 1305
-    LayoutY = 507
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
-    SnapToPixel = False
-    Alignment = CENTER
-    ContentDisplay = _CD_LEFT
-    EllipsisString = '...'
-    Underline = False
-    TextFill = 3355443
-    GraphicTextGap = 4
-    MnemonicParsing = False
-    Text = 'Apply'
-    TextAlignment = _TA_LEFT
-    WrapText = False
-    action = 'bApply2_Action'
-    CancelButton = False
-    DefaultButton = False
-  end
-  object lX2: TFXLabel
-    Tag = 101
-    Left = 1016
-    Top = 512
-    Width = 17
-    Height = 25
-    Hint = 'label1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 1016
-    LayoutY = 512
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 17
-    SnapToPixel = False
-    Alignment = CENTER_LEFT
-    ContentDisplay = _CD_LEFT
-    EllipsisString = '...'
-    Underline = False
-    TextFill = 3355443
-    GraphicTextGap = 4
-    MnemonicParsing = False
-    Text = 'X:'
-    TextAlignment = _TA_LEFT
-    WrapText = False
-  end
   object lIndex: TFXLabel
     Tag = 101
-    Left = 896
-    Top = 512
+    Left = 832
+    Top = 320
     Width = 41
     Height = 25
     Hint = 'label2'
@@ -1717,8 +1521,8 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 896
-    LayoutY = 512
+    LayoutX = 832
+    LayoutY = 320
     Disable = False
     Cache = False
     dragOver = ''
@@ -1736,42 +1540,9 @@ object TurtleDesigner: TFXGuiForm
     TextAlignment = _TA_LEFT
     WrapText = False
   end
-  object lY1: TFXLabel
-    Tag = 101
-    Left = 1112
-    Top = 512
-    Width = 25
-    Height = 25
-    Hint = 'label3'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 1112
-    LayoutY = 512
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 25
-    SnapToPixel = False
-    Alignment = CENTER_LEFT
-    ContentDisplay = _CD_LEFT
-    EllipsisString = '...'
-    Underline = False
-    TextFill = 3355443
-    GraphicTextGap = 4
-    MnemonicParsing = False
-    Text = 'Y:'
-    TextAlignment = _TA_LEFT
-    WrapText = False
-  end
   object slider1: TFXSlider
     Tag = 131
-    Left = 896
+    Left = 976
     Top = 280
     Width = 140
     Height = 20
@@ -1783,7 +1554,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = 16053492
-    LayoutX = 896
+    LayoutX = 976
     LayoutY = 280
     Disable = False
     Cache = False
@@ -1802,7 +1573,7 @@ object TurtleDesigner: TFXGuiForm
   end
   object slider2: TFXSlider
     Tag = 131
-    Left = 1048
+    Left = 1120
     Top = 280
     Width = 153
     Height = 25
@@ -1814,7 +1585,7 @@ object TurtleDesigner: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = 16053492
-    LayoutX = 1048
+    LayoutX = 1120
     LayoutY = 280
     Disable = False
     Cache = False
@@ -1830,5 +1601,211 @@ object TurtleDesigner: TFXGuiForm
     MajorTickUnit = 25.0000000000000000
     BlockIncrement = 10.0000000000000000
     SnapToTicks = False
+  end
+  object bEdit: TFXButton
+    Tag = 105
+    Left = 943
+    Top = 318
+    Width = 59
+    Height = 25
+    Hint = 'button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 943
+    LayoutY = 318
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 59
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Edit'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bEdit_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object bDelete: TFXButton
+    Tag = 105
+    Left = 760
+    Top = 319
+    Width = 59
+    Height = 25
+    Hint = 'button2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 760
+    LayoutY = 319
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 59
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Delete'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bDelete_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object numberField10: TFXNumberField
+    Tag = 103
+    Left = 911
+    Top = 582
+    Width = 43
+    Height = 25
+    Cursor = crIBeam
+    Hint = 'numberField9'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clWhite
+    LayoutX = 911
+    LayoutY = 582
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 43
+    SnapToPixel = False
+    Text = ''
+    Editable = True
+    Alignment = CENTER_LEFT
+    PrefColumnCount = 12
+    action = ''
+  end
+  object lIndex1: TFXLabel
+    Tag = 101
+    Left = 864
+    Top = 584
+    Width = 41
+    Height = 25
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 864
+    LayoutY = 584
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 41
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Index:'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object bEdit1: TFXButton
+    Tag = 105
+    Left = 871
+    Top = 622
+    Width = 59
+    Height = 25
+    Hint = 'button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 871
+    LayoutY = 622
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 59
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Edit'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bEdit1_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object bDelete1: TFXButton
+    Tag = 105
+    Left = 792
+    Top = 583
+    Width = 59
+    Height = 25
+    Hint = 'button2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 792
+    LayoutY = 583
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 59
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Delete'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bDelete1_Action'
+    CancelButton = False
+    DefaultButton = False
   end
 end
