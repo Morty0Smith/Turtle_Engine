@@ -636,7 +636,7 @@ public class TurtleDesigner extends Application {
       } // end of if-else
     }
 }
-   public static float[][] getArcPoints(float startX, float startY, float endX, float endY, float percentage, int n) {
+ public static float[][] getArcPoints(float startX, float startY, float endX, float endY, float percentage, int n) {
         double cx = (startX + endX) / 2.0;
         double cy = (startY + endY) / 2.0;
         double r = Math.sqrt((startX - endX) * (startX - endX) + (startY - endY) * (startY - endY)) / 2.0;
@@ -840,10 +840,64 @@ public class TurtleDesigner extends Application {
       turtle1.drawto((float)OffsetX + scale * XCoordinates.get(numberField4.getInt()), (float)OffsetY + scale * YCoordinates.get(numberField4.getInt()));
     } // end of if-else
   } // end of bPreview1_Action
+  
+  public String generateShapeDrawingCode(ArrayList<Float> XCoordinates, ArrayList<Float> YCoordinates, ArrayList<Integer> Paths, int OffsetX, int OffsetY, float scale) {
+    StringBuilder codeBuilder = new StringBuilder();
+
+    // Check if offset is needed
+    boolean offsetTrue = (OffsetX != 0 || OffsetY != 0);
+    if (true) {
+      float Multiplyer1 = (float)OffsetX / (float)70;
+      float Multiplyer2 = (float)OffsetY / (float)70;
+      codeBuilder.append("if (OffsetTrue) { XOffset = (int) (" + Multiplyer1 + " * size); YOffset = - (int) (" + Multiplyer2 + " * size); }\n");
+    }
+
+    // Convert XCoordinates, YCoordinates, and Paths to arrays
+    Float[] XCoordsArray = XCoordinates.toArray(new Float[XCoordinates.size()]);
+    Float[] YCoordsArray = YCoordinates.toArray(new Float[YCoordinates.size()]);
+    Integer[] pathsArray = Paths.toArray(new Integer[Paths.size()]);
+
+    // Generate the code to call the PointDrawer function
+    codeBuilder.append("ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList(");
+    for (int i = 0; i < XCoordsArray.length; i++) {
+        codeBuilder.append("(float) ").append(XCoordsArray[i]);
+        if (i < XCoordsArray.length - 1) {
+            codeBuilder.append(", ");
+        }
+    }
+    codeBuilder.append("));\n");
+
+    codeBuilder.append("ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList(");
+    for (int i = 0; i < YCoordsArray.length; i++) {
+        codeBuilder.append("(float) ").append(YCoordsArray[i]);
+        if (i < YCoordsArray.length - 1) {
+            codeBuilder.append(", ");
+        }
+    }
+    codeBuilder.append("));\n");
+
+    codeBuilder.append("ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(");
+    for (int i = 0; i < pathsArray.length; i++) {
+        codeBuilder.append(pathsArray[i]);
+        if (i < pathsArray.length - 1) {
+            codeBuilder.append(", ");
+        }
+    }
+    codeBuilder.append("));\n");
+    
+    float scaleMultiplyer = (float) 70 / scale;
+
+    codeBuilder.append("PointDrawer(x + XOffset, y + YOffset, (float) size / (float) " + scaleMultiplyer + ", XCoordinates, YCoordinates, Paths);");
+
+    return codeBuilder.toString();
+}
+
+
 
   public void bGenerateCode_Action(Event evt) {
     // TODO hier Quelltext einfügen
-    
+    String code = generateShapeDrawingCode(XCoordinates, YCoordinates, Paths, OffsetX, OffsetY, scale);
+    textArea3.setText(code);
   } // end of bGenerateCode_Action
 
   public void bSave_Action(Event evt) {

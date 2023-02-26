@@ -570,6 +570,10 @@ public class TurtleDesigner extends Application {
     XCoordinates.clear();
     YCoordinates.clear();
     Paths.clear();
+    PathIndexesStart.clear();
+    PathIndexesEnd.clear();
+    PathIndexesArrayPosition.clear();
+    CurvedPathTrueIndexes.clear();
     numberPaths = -1;
     slider1.setMin(-50);
     slider1.setMax(50);
@@ -632,25 +636,67 @@ public class TurtleDesigner extends Application {
       } // end of if-else
     }
 }
-   public static float[][] getArcPoints(float startX, float startY, float endX, float endY, float percentage, int n) {
-        double cx = (startX + endX) / 2.0;
-        double cy = (startY + endY) / 2.0;
-        double r = Math.sqrt((startX - endX) * (startX - endX) + (startY - endY) * (startY - endY)) / 2.0;
-        double startAngle = Math.atan2(startY - cy, startX - cx);
-        double endAngle = Math.atan2(endY - cy, endX - cx);
-        double angle = 2 * Math.PI * percentage / 100;
-        endAngle = startAngle + angle;
-        float[][] points = new float[n][2];
-        double angleStep = (endAngle - startAngle) / (n - 1);
-        for (int i = 0; i < n; i++) {
-          angle = startAngle + i * angleStep;
-          double x = cx + r * Math.cos(angle);
-          double y = cy + r * Math.sin(angle);
-          points[i][0] = (float) x;
-          points[i][1] = (float) y;
-        }
-        return points;
-  }
+public static float[][] getArcPoints(float startX, float startY, float endX, float endY, float percentage, int n) {
+  // Find the center of the circle that passes through the two given points
+  // using perpendicular bisectors method
+  // https://stackoverflow.com/questions/5467245/put-points-round-into-circular-arc-used-in-java
+  float midX = (startX + endX) / 2;
+  float midY = (startY + endY) / 2;
+  float dx = endX - startX;
+  float dy = endY - startY;
+  float dist = (float) Math.sqrt(dx * dx + dy * dy);
+  float r = dist / 2; // radius of the circle
+  // slope of the line segment joining the two points
+  float m1 = dy / dx;
+  // slope of the perpendicular bisector
+  float m2 = -1 / m1;
+  // angle between x-axis and perpendicular bisector
+  double angle = Math.atan(m2);
+  
+  // find one possible center point by adding r * cos(angle) and r * sin(angle)
+  // to midpoint coordinates
+  double cx1 = midX + r * Math.cos(angle);
+  double cy1 = midY + r * Math.sin(angle);
+  
+   // find another possible center point by subtracting r * cos(angle) and r * sin(angle)
+   // from midpoint coordinates
+   double cx2 = midX - r * Math.cos(angle);
+   double cy2 = midY - r * Math.sin(angle);
+
+   // choose one of them as center point based on which side of line segment 
+   // has more arc length 
+   double angle1 = Math.atan2(startY - cy1, startX - cx1); 
+   double angle2 = Math.atan2(endY - cy1, endX - cx1); 
+   double diff1 = angle2 - angle1; 
+   if (diff1 <0) diff +=Math.PI*2;
+
+    double cx,cy; 
+    if(diff > diff){
+      cx=cx3;cy=cy3;
+    }else{
+      cx=cx3;cy=cy3;
+    }
+    // create an array to store the arc points
+    float[][] arcPoints = new float[n][2];
+
+    // calculate the angle increment based on percentage and number of points
+    double angleIncrement = percentage * diff / n;
+
+    // loop through the array and fill it with points along the arc
+    for (int i = 0; i < n; i++) {
+      // calculate the current angle by adding angle increment to start angle
+      double currentAngle = startAngle + i * angleIncrement;
+      // calculate the x and y coordinates of the point using polar coordinates
+      float x = (float) (cx + r * Math.cos(currentAngle));
+      float y = (float) (cy + r * Math.sin(currentAngle));
+      // store the point in the array
+      arcPoints[i][0] = x;
+      arcPoints[i][1] = y;
+    }
+
+    // return the array of arc points
+    return arcPoints;
+}
   
   public float UpdateSlider(NumberField field, Slider slide, int offset, boolean EditSlide) {
     if (scale == LastScale) {
@@ -680,7 +726,6 @@ public class TurtleDesigner extends Application {
   public void ableEdit(boolean EditEnabled) {
     EditTrue = EditEnabled;
     if (EditEnabled) {
-      bDelete.setVisible(true);
       lIndex.setVisible(true);
       numberField9.setVisible(true);
       bEdit.setText("Save");
@@ -773,6 +818,27 @@ public class TurtleDesigner extends Application {
     // TODO hier Quelltext einfügen
     int Index1 = numberField3.getInt();
     int Index2 = numberField4.getInt();
+    UpdatePathArrayPositions();
+    boolean StartOutOfBounds = Index1 > XCoordinates.size() - 1;
+    boolean EndOutOfBounds = Index2 > XCoordinates.size() - 1;
+    if (!(Index1 == Index2) && !StartOutOfBounds && !EndOutOfBounds) {
+      PathIndexesStart.add(numberField3.getInt());
+      PathIndexesEnd.add(numberField4.getInt());
+      CurvedPathTrueIndexes.add(checkBox3.isSelected());
+      if(checkBox3.isSelected()) {
+        Paths.add((numberField5.getInt() * -1));
+      }
+      Paths.add(Index1);
+      Paths.add(Index2);
+      numberPaths++;
+      UpdatePathsTextField();
+    } else {
+      System.out.println("Point Index out of bounds or equal");
+    } // end of if-else
+    PrviewDraw();
+  } // end of bAddToPaths_Action
+  
+  private void UpdatePathArrayPositions() {
     int numberCurves = 0;
     int numberNonCurves = 0;
     int ArrayIndex;
@@ -788,34 +854,7 @@ public class TurtleDesigner extends Application {
       ArrayIndex = numberCurves * 3 +  numberNonCurves * 2;
       PathIndexesArrayPosition.add(ArrayIndex);
     }
-    if (! (Index1 == Index2)) {
-      PathIndexesStart.add(numberField3.getInt());
-      PathIndexesEnd.add(numberField4.getInt());
-      CurvedPathTrueIndexes.add(checkBox3.isSelected());
-      if(checkBox3.isSelected()) {
-        Paths.add((numberField5.getInt() * -1));
-      }
-      Paths.add(Index1);
-      Paths.add(Index2);
-      numberPaths++;
-      if (textArea2.getText().isEmpty()) {
-      if (checkBox3.isSelected()) {
-        textArea2.setText("- Index 0: " + "Curved path with " + numberField5.getInt() + "% ammount from point " + numberField3.getInt() + " to point" + numberField4.getInt());
-      } else {
-        textArea2.setText("- Index 0: " + "Straight path from point " + numberField3.getInt() + " to point " + numberField4.getInt());
-      } // end of if-else
-    } else {
-      if (checkBox3.isSelected()) {
-        textArea2.appendText("\n- Index " + numberPaths + ": " + "Curved path with " + numberField5.getInt() + "% ammount from point " + numberField3.getInt() + " to point" + numberField4.getInt());
-      } else {
-        textArea2.appendText("\n- Index " + numberPaths + ": " + "Straight path from point " + numberField3.getInt() + " to point " + numberField4.getInt());
-      } // end of if-else
-    } // end of if-else
-    } else {
-      System.out.println("You can't draw a path between two equal points");
-    } // end of if-else
-    PrviewDraw();
-  } // end of bAddToPaths_Action
+  }
 
   public void bPreview1_Action(Event evt) {
     // TODO hier Quelltext einfügen
@@ -899,6 +938,24 @@ public class TurtleDesigner extends Application {
       } // end of if-else
     }
   }
+  
+  public void UpdatePathsTextField() {
+    textArea2.setText("");
+    if (Paths.size() > 0) {
+      if (CurvedPathTrueIndexes.get(0)) {
+      textArea2.setText("- Index 0: " + "Curved path with " + Paths.get(0) * -1 + "% ammount from point " + Paths.get(1) + " to point" + Paths.get(2));  
+      } else {
+        textArea2.setText("- Index 0: " + "Straight path from point " + Paths.get(0) + " to point " + Paths.get(1));  
+      } // end of if-else
+      for (int i = 1; i < CurvedPathTrueIndexes.size(); i++) {
+        if (CurvedPathTrueIndexes.get(i)) {
+          textArea2.appendText("\n- Index " + i + ": " + "Curved path with " + Paths.get(PathIndexesArrayPosition.get(i)) * -1 + "% ammount from point " + Paths.get(PathIndexesArrayPosition.get(i) + 1) + " to point " + Paths.get(PathIndexesArrayPosition.get(i) + 2));
+        } else {
+          textArea2.appendText("\n- Index " + i + ": " + "Straight path from point " +  Paths.get(PathIndexesArrayPosition.get(i)) + " to point " +  Paths.get(PathIndexesArrayPosition.get(i) + 1));
+        } // end of if-else
+      }
+    } // end of if
+  }
   public void bEdit_Action(Event evt) {
     // TODO hier Quelltext einfügen
     if (XCoordinates.size() == 0) {
@@ -918,17 +975,7 @@ public class TurtleDesigner extends Application {
   } // end of bEdit_Action
 
   public void bDelete_Action(Event evt) {
-    // TODO hier Quelltext einfügen
-    int deleteIndex = numberField9.getInt();
-    XCoordinates.remove(deleteIndex);
-    YCoordinates.remove(deleteIndex);
-    UpdatePointTextField();
-    PrviewDraw();
-    if (XCoordinates.size() == 0) {
-      ableEdit(false);
-    } else {
-      numberField9.setInt(0);
-    } // end of if-else
+    
   } // end of bDelete_Action
 
   public void bEdit1_Action(Event evt) {
@@ -956,19 +1003,26 @@ public class TurtleDesigner extends Application {
         if (isMadeCurve && !wasCurve) {
           CurvedPathTrueIndexes.set(InputIndex, true);
           Paths.add(0);
-          if (InputIndex != CurvedPathTrueIndexes.size() - 1) {
-            for (int i = Paths.size() - 1; i > ArrayPostion; i--) {
-            Paths.set(ArrayPostion + i,Paths.get(ArrayPostion - 1 + i));
-            }
-          } // end of if
+          for (int i = Paths.size() - 1; i > ArrayPostion; i--) {
+            Paths.set(i, Paths.get(i - 1));
+          }
           Paths.set(PathIndexesArrayPosition.get(InputIndex), newCurveAmmount); 
+          UpdatePathArrayPositions();
         } // end of if
         if (!isMadeCurve && wasCurve) {
-          
+          CurvedPathTrueIndexes.set(InputIndex, false);
+          System.out.println(Paths);
+          for (int i = ArrayPostion; i < Paths.size() - 1; i++) {
+            Paths.set(i, Paths.get(i + 1));
+            UpdatePathArrayPositions();
+          }
+          Paths.remove(Paths.size() - 1);
+          UpdatePathArrayPositions();
         } // end of if
         PathIndexesStart.set(InputIndex, newStart);
         PathIndexesEnd.set(InputIndex, newEnd);
         PrviewDraw();
+        UpdatePathsTextField();
         AbleEdit2(false);
       } else {
         AbleEdit2(true);
@@ -978,7 +1032,22 @@ public class TurtleDesigner extends Application {
 
   public void bDelete1_Action(Event evt) {
     // TODO hier Quelltext einfügen
-    
+    int InputIndex = numberField10.getInt();
+    int PAthIndex = PathIndexesArrayPosition.get(InputIndex);
+    if (CurvedPathTrueIndexes.get(InputIndex)) {
+      Paths.remove(PAthIndex + 2);
+      Paths.remove(PAthIndex + 1);
+      Paths.remove(PAthIndex);
+    } else {
+      Paths.remove(PAthIndex + 1);
+      Paths.remove(PAthIndex);
+    } // end of if-else
+    PathIndexesStart.remove(InputIndex);
+    PathIndexesEnd.remove(InputIndex);
+    CurvedPathTrueIndexes.remove(InputIndex);
+    UpdatePathArrayPositions();
+    UpdatePathsTextField();
+    PrviewDraw();
   } // end of bDelete1_Action
 
   // Ende Methoden

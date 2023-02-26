@@ -1,6 +1,6 @@
 object TurtleDesigner: TFXGuiForm
-  Left = 1537
-  Top = 401
+  Left = 542
+  Top = 196
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleDesigner'
   ClientHeight = 1000
@@ -16,7 +16,7 @@ object TurtleDesigner: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
