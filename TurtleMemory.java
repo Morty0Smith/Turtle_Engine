@@ -365,23 +365,11 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 11.666667, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe =='E') {
-      turtle1.turnto(-180);
-      turtle1.move(size/2);
-      turtle1.turnto(90);
-      turtle1.draw(size);
-      turtle1.turn(180);
-      turtle1.move(size);
-      turtle1.draw(size);
-      turtle1.turnto(0);
-      turtle1.draw(size);
-      turtle1.turn(90);
-      turtle1.move(size);
-      turtle1.turn(90);
-      turtle1.draw(size);
-      turtle1.turn(-90);
-      turtle1.move(size);
-      turtle1.turn(-90);
-      turtle1.draw(size);
+      if (OffsetTrue) { XOffset = (int) (-0.6857143 * size); YOffset = (int) (0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 0.0, (float) 0.0, (float) 15.0, (float) 15.0, (float) 15.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 12.0, (float) -12.0, (float) 0.0, (float) 12.0, (float) -12.0, (float) 0.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 0, 3, 1, 4, 2, 5));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 11.666667, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == 'F') {
       if (OffsetTrue) {
@@ -605,7 +593,7 @@ public class TurtleMemory extends Application {
     int XIndex =  ButtonIndex%4;
     int YIndex = ButtonIndex/4;
     BuchstabenZeichenen(Buchstaben[ButtonIndex], xPositions[XIndex], yPositions[YIndex], 70, true);
-    //BuchstabenZeichenen('Z', xPositions[XIndex], yPositions[YIndex], 70, true);
+    //BuchstabenZeichenen('E', xPositions[XIndex], yPositions[YIndex], 70, true);
   }
   private void RedrawService(int ClickIndex) {
     turtle1.clear();

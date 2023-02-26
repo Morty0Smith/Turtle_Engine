@@ -97,6 +97,8 @@ public class TurtleDesigner extends Application {
   private Label lIndex1 = new Label();
   private Button bEdit1 = new Button();
   private Button bDelete1 = new Button();
+  private CheckBox checkBox4 = new CheckBox();
+  private Label lEnablePreviewMemoryField = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -448,7 +450,7 @@ public class TurtleDesigner extends Application {
         if (EditTrue) {
           XCoordinates.set(numberField9.getInt(), UpdateSlider(numberField1, slider1, 0, false));
         } else {
-          DrawPreviewPoint(OffsetX + UpdateSlider(numberField1, slider1, OffsetX, false) * scale, OffsetY + numberField2.getInt() * scale); 
+          DrawPreviewPoint(OffsetX *scale + UpdateSlider(numberField1, slider1, OffsetX, false) * scale, OffsetY * scale + numberField2.getInt() * scale); 
         } // end of if-else
          }
       });
@@ -465,7 +467,7 @@ public class TurtleDesigner extends Application {
            if (EditTrue) {
               YCoordinates.set(numberField9.getInt(), UpdateSlider(numberField2, slider2, 0, false));
            } else {
-             DrawPreviewPoint(OffsetX + numberField1.getInt() * scale, OffsetY + UpdateSlider(numberField2, slider2, OffsetY, false) * scale); 
+             DrawPreviewPoint(OffsetX * scale + numberField1.getInt() * scale, OffsetY * scale + UpdateSlider(numberField2, slider2, OffsetY, false) * scale); 
            } // end of if-else 
          }
       });
@@ -534,6 +536,19 @@ public class TurtleDesigner extends Application {
     );
     bDelete1.setText("Delete");
     root.getChildren().add(bDelete1);
+    checkBox4.setLayoutX(816);
+    checkBox4.setLayoutY(128);
+    checkBox4.setPrefHeight(17);
+    checkBox4.setPrefWidth(16);
+    checkBox4.setText("");
+    checkBox4.setSelected(true);
+    root.getChildren().add(checkBox4);
+    lEnablePreviewMemoryField.setLayoutX(844);
+    lEnablePreviewMemoryField.setLayoutY(128);
+    lEnablePreviewMemoryField.setPrefHeight(20);
+    lEnablePreviewMemoryField.setPrefWidth(174);
+    lEnablePreviewMemoryField.setText("Enable Preview Memory Field");
+    root.getChildren().add(lEnablePreviewMemoryField);
     // Ende Komponenten
     
     primaryStage.setOnCloseRequest(e -> System.exit(0));
@@ -581,6 +596,8 @@ public class TurtleDesigner extends Application {
     slider2.setMax(50);
     boolean PreviewCrossEnabled = checkBox1.isSelected();
     PreviewCross(PreviewCrossEnabled);
+    boolean PreviewFieldEnabled = checkBox4.isSelected();
+    PreviewMemomryField(PreviewFieldEnabled);
     ableEdit(false);
     AbleEdit2(false);
   } // end of bNewGraphic_Action
@@ -593,6 +610,17 @@ public class TurtleDesigner extends Application {
       turtle1.moveto(0,-10);
       turtle1.drawto(0,10);
     } // end of if 
+  }
+  
+  private void PreviewMemomryField(boolean enabled) {
+    if (enabled) {
+      turtle1.moveto(-92.5, -92.5);
+      turtle1.turnto(0);
+      for (int i = 0; i < 4; i++) {
+        turtle1.draw(185);
+        turtle1.turn(90);
+      }
+    } // end of if
   }
   
   private void nEckZeichnen(int x, int y, int Ecken, float Umfang, int Rotation, float Kreisteil) {
@@ -625,14 +653,14 @@ public class TurtleDesigner extends Application {
           } // end of if
         }
         for (int f = 0; f < Pathes.size() -1; f+=2) {
-          turtle1.moveto(x + scale * XEs.get(Pathes.get(f)),y + scale * YEs.get(Pathes.get(f)));
-          turtle1.drawto(x + scale * XEs.get(Pathes.get(f + 1)),y + scale * YEs.get(Pathes.get(f + 1)));
+          turtle1.moveto(x * scale + scale * XEs.get(Pathes.get(f)),y * scale + scale * YEs.get(Pathes.get(f)));
+          turtle1.drawto(x *scale+ scale * XEs.get(Pathes.get(f + 1)),y * scale + scale * YEs.get(Pathes.get(f + 1)));
         }
         i++;
       } // end of if
       else {
-        turtle1.moveto(x + scale * CorordinatesX.get(Prahs.get(i)), y + scale * CorordinatesY.get(Prahs.get(i)));
-        turtle1.drawto(x + scale * CorordinatesX.get(Prahs.get(i + 1)), y +  scale * CorordinatesY.get(Prahs.get(i + 1)));
+        turtle1.moveto(x * scale + scale * CorordinatesX.get(Prahs.get(i)), y* scale + scale * CorordinatesY.get(Prahs.get(i)));
+        turtle1.drawto(x * scale + scale * CorordinatesX.get(Prahs.get(i + 1)), y * scale +  scale * CorordinatesY.get(Prahs.get(i + 1)));
       } // end of if-else
     }
 }
@@ -736,10 +764,12 @@ public class TurtleDesigner extends Application {
     turtle1.clear();
     boolean PreiewCrossEnabled = checkBox1.isSelected();
     PreviewCross(PreiewCrossEnabled);
+    boolean PreiewFieldEnabled = checkBox4.isSelected();
+    PreviewMemomryField(PreiewFieldEnabled);
     int CoordinateLength = XCoordinates.size();
     if (checkBox2.isSelected()) {
       for (int i = 0; i < CoordinateLength; i++) {
-      DrawPreviewPoint(XCoordinates.get(i) * scale + OffsetX, YCoordinates.get(i) * scale + OffsetY);    
+      DrawPreviewPoint((XCoordinates.get(i) + OffsetX) * scale, (YCoordinates.get(i) + OffsetY) * scale);    
     }
     } // end of if
     PointDrawer(OffsetX,OffsetY,scale,XCoordinates,YCoordinates,Paths);
@@ -824,8 +854,8 @@ public class TurtleDesigner extends Application {
         ArrayList <Integer> Pathes = new ArrayList<Integer>();
         float[][] Points = getArcPoints(XCoordinates.get(numberField3.getInt()),YCoordinates.get(numberField3.getInt()),XCoordinates.get(numberField4.getInt()),YCoordinates.get(numberField4.getInt()), Percentage, 30);
         for (int f = 0; f < 30; f++) {
-          XEs.add(OffsetX + scale * Points[f][0]);
-          YEs.add(OffsetY + scale * Points[f][1]);
+          XEs.add(OffsetX * scale + scale * Points[f][0]);
+          YEs.add(OffsetY * scale + scale * Points[f][1]);
           if (f > 0) {
             Pathes.add(f - 1);
             Pathes.add(f);
@@ -836,8 +866,8 @@ public class TurtleDesigner extends Application {
           turtle1.drawto(XEs.get(Pathes.get(f +1)),YEs.get(Pathes.get(f+1)));
         }
     } else {
-      turtle1.moveto((float)OffsetX + scale * XCoordinates.get(numberField3.getInt()), (float)OffsetY + scale * YCoordinates.get(numberField3.getInt()));
-      turtle1.drawto((float)OffsetX + scale * XCoordinates.get(numberField4.getInt()), (float)OffsetY + scale * YCoordinates.get(numberField4.getInt()));
+      turtle1.moveto((float)OffsetX * scale + scale * XCoordinates.get(numberField3.getInt()), (float)OffsetY *scale + scale * YCoordinates.get(numberField3.getInt()));
+      turtle1.drawto((float)OffsetX * scale + scale * XCoordinates.get(numberField4.getInt()), (float)OffsetY *scale + scale * YCoordinates.get(numberField4.getInt()));
     } // end of if-else
   } // end of bPreview1_Action
   
@@ -847,9 +877,9 @@ public class TurtleDesigner extends Application {
     // Check if offset is needed
     boolean offsetTrue = (OffsetX != 0 || OffsetY != 0);
     if (true) {
-      float Multiplyer1 = (float)OffsetX / (float)70;
-      float Multiplyer2 = (float)OffsetY / (float)70;
-      codeBuilder.append("if (OffsetTrue) { XOffset = (int) (" + Multiplyer1 + " * size); YOffset = - (int) (" + Multiplyer2 + " * size); }\n");
+      float Multiplyer1 = (float)OffsetX * scale / (float)70;
+      float Multiplyer2 = (float)OffsetY * scale / (float)70;
+      codeBuilder.append("if (OffsetTrue) { XOffset = (int) (" + Multiplyer1 + " * size); YOffset = (int) (" + Multiplyer2 + " * size); }\n");
     }
 
     // Convert XCoordinates, YCoordinates, and Paths to arrays
@@ -937,6 +967,7 @@ public class TurtleDesigner extends Application {
     numberField8.setFloat(OffsetY);
     UpdatePointTextField();
     ableEdit(false);
+    PrviewDraw();
   } // end of bApply1_Action
 
   public void UpdatePointTextField() {

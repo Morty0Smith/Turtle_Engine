@@ -1808,4 +1808,74 @@ object TurtleDesigner: TFXGuiForm
     CancelButton = False
     DefaultButton = False
   end
+  object checkBox4: TFXCheckBox
+    Tag = 106
+    Left = 816
+    Top = 128
+    Width = 29
+    Height = 17
+    Hint = 'checkBox4'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 816
+    LayoutY = 128
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 17
+    PrefWidth = 29
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = ''
+    AllowIndeterminate = False
+    Indeterminate = False
+    Selected = True
+  end
+  object lEnablePreviewMemoryField: TFXLabel
+    Tag = 101
+    Left = 844
+    Top = 128
+    Width = 174
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 844
+    LayoutY = 128
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 174
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Enable Preview Memory Field'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
 end
