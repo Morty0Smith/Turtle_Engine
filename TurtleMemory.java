@@ -13,6 +13,8 @@ import java.util.Arrays;
 import je.NumberField;
 import java.util.List;
 import java.util.ArrayList;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -42,6 +44,7 @@ public class TurtleMemory extends Application {
   private Button button15 = new Button();
   private Button button16 = new Button();
   private Button button17 = new Button();
+  private Button button18 = new Button();
   private String GameMode = "Buchstaben";
   private List<Integer> AleadySolvedButtonIndexes = new ArrayList<>();
   private int LastCardPositionIndex = 0;
@@ -54,8 +57,11 @@ public class TurtleMemory extends Application {
   private int score = 0;
   private char LetzteKarte = '*';
   private char VorletzteKarte = '*';
+  private Button[] MemoryButtons = {button1, button2, button3, button4, button5, button6,button7,button8, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17,button18};
   
   private NumberField numberField1 = new NumberField();
+  private Label lTurtleMemory = new Label();
+  private Button bStart = new Button();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -212,6 +218,31 @@ public class TurtleMemory extends Application {
     numberField1.setPrefHeight(25);
     numberField1.setPrefWidth(75);
     root.getChildren().add(numberField1);
+    button18.setLayoutX(856);
+    button18.setLayoutY(272);
+    button18.setPrefHeight(25);
+    button18.setPrefWidth(75);
+    button18.setOnAction(
+      (event) -> {button18_Action(event);} 
+    );
+    root.getChildren().add(button18);
+    lTurtleMemory.setLayoutX(203);
+    lTurtleMemory.setLayoutY(81);
+    lTurtleMemory.setPrefHeight(116);
+    lTurtleMemory.setPrefWidth(462);
+    lTurtleMemory.setText("Turtle Memory");
+    lTurtleMemory.setFont(Font.font("Dialog", 70));
+    root.getChildren().add(lTurtleMemory);
+    bStart.setLayoutX(311);
+    bStart.setLayoutY(317);
+    bStart.setPrefHeight(65);
+    bStart.setPrefWidth(227);
+    bStart.setOnAction(
+      (event) -> {bStart_Action(event);} 
+    );
+    bStart.setText("Start");
+    bStart.setFont(Font.font("Dialog", 50));
+    root.getChildren().add(bStart);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -230,6 +261,8 @@ public class TurtleMemory extends Application {
     button15.setStyle("-fx-background-color: transparent;");
     button16.setStyle("-fx-background-color: transparent;");
     button17.setStyle("-fx-background-color: transparent;");
+    lTurtleMemory.setVisible(false);
+    bStart.setVisible(false);
     
     primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("TurtleMemory");
@@ -688,6 +721,33 @@ public class TurtleMemory extends Application {
       LetzteKarte = Karte; 
     } // end of if
   }
+  
+  
+  public void SwitchToStartScreen() {
+    for (int i = 0; i < MemoryButtons.length; i++) {
+      MemoryButtons[i].setVisible(false);
+    }
+    numberField1.setVisible(false);
+    lTurtleMemory.setVisible(true);
+    bStart.setVisible(true);
+    turtle1.clear();
+  }
+  
+  public void StartGame() {
+    for (int i = 0; i < MemoryButtons.length; i++) {
+      MemoryButtons[i].setVisible(true);
+    }
+    numberField1.setVisible(true);
+    lTurtleMemory.setVisible(false);
+    bStart.setVisible(false);
+    score = 0;
+    LastCardPositionIndex = 0;
+    numberField1.setInt(score);
+    MemoryMischen();
+    turtle1.clear();
+    SpielfeldZeichnen();
+    KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
+  }
 
   public void button2_Action(Event evt) {
     // TODO hier Quelltext einfügen
@@ -769,6 +829,17 @@ public class TurtleMemory extends Application {
     // TODO hier Quelltext einfügen
     ButtonService(12);
   } // end of button17_Action
+
+  public void button18_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    SwitchToStartScreen();
+  } // end of button18_Action
+
+
+  public void bStart_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    StartGame();
+  } // end of bStart_Action
 
   // Ende Methoden
 } // end of class TurtleMemory
