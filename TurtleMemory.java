@@ -48,7 +48,7 @@ public class TurtleMemory extends Application {
   private int[] xPositions = {-280, -87, 89, 285};
   private int[] yPositions = {279, 93, -93, -279};
   private char[] Buchstaben = new char[16];
-  private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F','H','I','K','N', 'M', 'T', 'V', 'W', 'X', 'Y', 'Z'};
+  private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F', 'G','H','I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   private boolean[] BuchstabenBefüllt = new boolean[16];
   private int KartenAnzahlZähler = 0;
   private int score = 0;
@@ -60,7 +60,7 @@ public class TurtleMemory extends Application {
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 988, 876);
+    Scene scene = new Scene(root, 988, 765);
     // Anfang Komponenten
     
     turtle1.setLayoutX(38);
@@ -476,6 +476,13 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, -60, 2, 3, 2, 4));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
+    if (Buchstabe == 'S') {
+      if (OffsetTrue) { XOffset = (int) (0.072571429 * size); YOffset = (int) (-0.25428572 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -49.2, (float) 34.44, (float) 27.06, (float) 0.0, (float) 22.96, (float) -29.52, (float) -4.92, (float) -28.699999, (float) -29.52, (float) 44.28));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -44.28, (float) 54.12, (float) -49.2, (float) -5.74, (float) -3.28, (float) 28.699999, (float) 28.699999, (float) 75.44, (float) -28.699999, (float) 75.44));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-20, 0, 1, -35, 2, 3, 4, 5, -35, 7, 6, -20, 9, 8));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 75.0, XCoordinates, YCoordinates, Paths);
+    } // end of if
     if (Buchstabe == 'M') {
        if (OffsetTrue) {
         XOffset = -35;
@@ -497,6 +504,13 @@ public class TurtleMemory extends Application {
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float)0, (float) 20, (float) 20, (float) 20));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0,1,2,3));
       PointDrawer(x + XOffset, y + YOffset, scale, XCoordinates, YCoordinates, Paths);
+    } // end of if
+    if (Buchstabe == 'U') {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.21428573 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -42.0, (float) 42.0, (float) 42.0, (float) -42.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -42.0, (float) -42.0, (float) 42.0, (float) 42.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-50, 0, 1, 0, 3, 1, 2));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 63.636364, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == 'V') {
       if (OffsetTrue) {
@@ -631,8 +645,8 @@ public class TurtleMemory extends Application {
   private void BuchstabenEnfügen(int ButtonIndex) {
     int XIndex =  ButtonIndex%4;
     int YIndex = ButtonIndex/4;
-    //BuchstabenZeichenen(Buchstaben[ButtonIndex], xPositions[XIndex], yPositions[YIndex], 70, true);
-    BuchstabenZeichenen('Q', xPositions[XIndex], yPositions[YIndex], 70, true);
+    BuchstabenZeichenen(Buchstaben[ButtonIndex], xPositions[XIndex], yPositions[YIndex], 70, true);
+    //BuchstabenZeichenen('L', xPositions[XIndex], yPositions[YIndex], 70, true);
   }
   private void RedrawService(int ClickIndex) {
     turtle1.clear();

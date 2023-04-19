@@ -1,9 +1,9 @@
 object TurtleMemory: TFXGuiForm
-  Left = 1536
-  Top = 234
+  Left = 1337
+  Top = 657
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleMemory'
-  ClientHeight = 875
+  ClientHeight = 764
   ClientWidth = 988
   Color = clBtnFace
   ParentFont = True
