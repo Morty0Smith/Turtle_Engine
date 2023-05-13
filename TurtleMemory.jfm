@@ -4,7 +4,7 @@ object TurtleMemory: TFXGuiForm
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleMemory'
   ClientHeight = 923
-  ClientWidth = 988
+  ClientWidth = 833
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -641,35 +641,6 @@ object TurtleMemory: TFXGuiForm
     CancelButton = False
     DefaultButton = False
   end
-  object numberField1: TFXNumberField
-    Tag = 103
-    Left = 857
-    Top = 147
-    Width = 75
-    Height = 25
-    Cursor = crIBeam
-    Hint = 'numberField1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = clBlack
-    Background = clWhite
-    LayoutX = 857
-    LayoutY = 147
-    Disable = False
-    Cache = False
-    dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
-    SnapToPixel = False
-    Text = ''
-    Editable = True
-    Alignment = CENTER_LEFT
-    PrefColumnCount = 12
-    action = ''
-  end
   object lTurtleMemory: TFXLabel
     Tag = 101
     Left = 203
@@ -741,59 +712,59 @@ object TurtleMemory: TFXGuiForm
   end
   object numberField2: TFXNumberField
     Tag = 103
-    Left = 856
-    Top = 344
-    Width = 75
-    Height = 25
+    Left = 200
+    Top = 856
+    Width = 67
+    Height = 33
     Cursor = crIBeam
     Hint = 'numberField2'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -20
     Font.Name = 'Dialog'
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 856
-    LayoutY = 344
+    LayoutX = 200
+    LayoutY = 856
     Disable = False
     Cache = False
     dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
+    PrefHeight = 33
+    PrefWidth = 67
     SnapToPixel = False
     Text = ''
     Editable = True
-    Alignment = CENTER_LEFT
+    Alignment = CENTER
     PrefColumnCount = 12
     action = ''
   end
   object numberField3: TFXNumberField
     Tag = 103
-    Left = 854
-    Top = 404
-    Width = 75
-    Height = 25
+    Left = 566
+    Top = 852
+    Width = 67
+    Height = 33
     Cursor = crIBeam
     Hint = 'numberField3'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -20
     Font.Name = 'Dialog'
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 854
-    LayoutY = 404
+    LayoutX = 566
+    LayoutY = 852
     Disable = False
     Cache = False
     dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
+    PrefHeight = 33
+    PrefWidth = 67
     SnapToPixel = False
     Text = ''
     Editable = True
-    Alignment = CENTER_LEFT
+    Alignment = CENTER
     PrefColumnCount = 12
     action = ''
   end
@@ -967,5 +938,71 @@ object TurtleMemory: TFXGuiForm
     action = 'bQuit_Action'
     CancelButton = False
     DefaultButton = False
+  end
+  object lCurrentturns: TFXLabel
+    Tag = 101
+    Left = 200
+    Top = 896
+    Width = 70
+    Height = 20
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 200
+    LayoutY = 896
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 70
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_CENTER
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'current turns'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object lHighscore: TFXLabel
+    Tag = 101
+    Left = 568
+    Top = 890
+    Width = 62
+    Height = 20
+    Hint = 'label3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 568
+    LayoutY = 890
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 62
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_CENTER
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'high score'
+    TextAlignment = _TA_LEFT
+    WrapText = False
   end
 end

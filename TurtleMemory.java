@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
+import javafx.geometry.*;
 
 /**
  *
@@ -60,7 +61,6 @@ public class TurtleMemory extends Application {
   private int LowestTurns = 0;
   private Button[] MemoryButtons = {button2, button3, button4, button5, button6,button7,button8, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17};
   
-  private NumberField numberField1 = new NumberField();
   private Label lTurtleMemory = new Label();
   private Button bStart = new Button();
   private NumberField numberField2 = new NumberField();
@@ -70,11 +70,13 @@ public class TurtleMemory extends Application {
   private Button bStartScreen = new Button();
   private Label l10 = new Label();
   private Button bQuit = new Button();
+  private Label lCurrentturns = new Label();
+  private Label lHighscore = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 988, 924);
+    Scene scene = new Scene(root, 833, 924);
     // Anfang Komponenten
     
     turtle1.setLayoutX(38);
@@ -90,7 +92,7 @@ public class TurtleMemory extends Application {
     button3.setPrefHeight(145);
     button3.setPrefWidth(147);
     button3.setOnAction(
-      (event) -> {button3_Action(event);} 
+    (event) -> {button3_Action(event);} 
     );
     root.getChildren().add(button3);
     button4.setLayoutX(432);
@@ -98,7 +100,7 @@ public class TurtleMemory extends Application {
     button4.setPrefHeight(145);
     button4.setPrefWidth(147);
     button4.setOnAction(
-      (event) -> {button4_Action(event);} 
+    (event) -> {button4_Action(event);} 
     );
     root.getChildren().add(button4);
     button5.setLayoutX(608);
@@ -106,7 +108,7 @@ public class TurtleMemory extends Application {
     button5.setPrefHeight(145);
     button5.setPrefWidth(147);
     button5.setOnAction(
-      (event) -> {button5_Action(event);} 
+    (event) -> {button5_Action(event);} 
     );
     root.getChildren().add(button5);
     button6.setLayoutX(608);
@@ -126,19 +128,19 @@ public class TurtleMemory extends Application {
     button9.setPrefHeight(145);
     button9.setPrefWidth(147);
     button6.setOnAction(
-      (event) -> {button6_Action(event);} 
+    (event) -> {button6_Action(event);} 
     );
     root.getChildren().add(button6);
     button7.setOnAction(
-      (event) -> {button7_Action(event);} 
+    (event) -> {button7_Action(event);} 
     );
     root.getChildren().add(button7);
     button8.setOnAction(
-      (event) -> {button8_Action(event);} 
+    (event) -> {button8_Action(event);} 
     );
     root.getChildren().add(button8);
     button9.setOnAction(
-      (event) -> {button9_Action(event);} 
+    (event) -> {button9_Action(event);} 
     );
     root.getChildren().add(button9);
     button10.setLayoutX(609);
@@ -174,35 +176,35 @@ public class TurtleMemory extends Application {
     button17.setPrefHeight(145);
     button17.setPrefWidth(147);
     button10.setOnAction(
-      (event) -> {button10_Action(event);} 
+    (event) -> {button10_Action(event);} 
     );
     root.getChildren().add(button10);
     button11.setOnAction(
-      (event) -> {button11_Action(event);} 
+    (event) -> {button11_Action(event);} 
     );
     root.getChildren().add(button11);
     button12.setOnAction(
-      (event) -> {button12_Action(event);} 
+    (event) -> {button12_Action(event);} 
     );
     root.getChildren().add(button12);
     button13.setOnAction(
-      (event) -> {button13_Action(event);} 
+    (event) -> {button13_Action(event);} 
     );
     root.getChildren().add(button13);
     button14.setOnAction(
-      (event) -> {button14_Action(event);} 
+    (event) -> {button14_Action(event);} 
     );
     root.getChildren().add(button14);
     button15.setOnAction(
-      (event) -> {button15_Action(event);} 
+    (event) -> {button15_Action(event);} 
     );
     root.getChildren().add(button15);
     button16.setOnAction(
-      (event) -> {button16_Action(event);} 
+    (event) -> {button16_Action(event);} 
     );
     root.getChildren().add(button16);
     button17.setOnAction(
-      (event) -> {button17_Action(event);} 
+    (event) -> {button17_Action(event);} 
     );
     root.getChildren().add(button17);
     button2.setLayoutX(72);
@@ -210,14 +212,9 @@ public class TurtleMemory extends Application {
     button2.setPrefHeight(145);
     button2.setPrefWidth(147);
     button2.setOnAction(
-      (event) -> {button2_Action(event);} 
+    (event) -> {button2_Action(event);} 
     );
     root.getChildren().add(button2);
-    numberField1.setLayoutX(857);
-    numberField1.setLayoutY(147);
-    numberField1.setPrefHeight(25);
-    numberField1.setPrefWidth(75);
-    root.getChildren().add(numberField1);
     lTurtleMemory.setLayoutX(203);
     lTurtleMemory.setLayoutY(81);
     lTurtleMemory.setPrefHeight(116);
@@ -230,20 +227,30 @@ public class TurtleMemory extends Application {
     bStart.setPrefHeight(65);
     bStart.setPrefWidth(227);
     bStart.setOnAction(
-      (event) -> {bStart_Action(event);} 
+    (event) -> {bStart_Action(event);} 
     );
     bStart.setText("Start");
     bStart.setFont(Font.font("Dialog", 50));
     root.getChildren().add(bStart);
-    numberField2.setLayoutX(856);
-    numberField2.setLayoutY(344);
-    numberField2.setPrefHeight(25);
-    numberField2.setPrefWidth(75);
+    numberField2.setLayoutX(200);
+    numberField2.setLayoutY(856);
+    numberField2.setPrefHeight(33);
+    numberField2.setPrefWidth(67);
+    numberField2.setEditable(false);
+    numberField2.setMouseTransparent(true);
+    numberField2.setFocusTraversable(false);
+    numberField2.setFont(Font.font("Dialog", 20));
+    numberField2.setAlignment(Pos.CENTER);
     root.getChildren().add(numberField2);
-    numberField3.setLayoutX(854);
-    numberField3.setLayoutY(404);
-    numberField3.setPrefHeight(25);
-    numberField3.setPrefWidth(75);
+    numberField3.setLayoutX(566);
+    numberField3.setLayoutY(852);
+    numberField3.setPrefHeight(33);
+    numberField3.setPrefWidth(67);
+    numberField3.setMouseTransparent(true);
+    numberField3.setFocusTraversable(false);
+    numberField3.setEditable(false);
+    numberField3.setAlignment(Pos.CENTER);
+    numberField3.setFont(Font.font("Dialog", 20));
     root.getChildren().add(numberField3);
     label1.setLayoutX(288);
     label1.setLayoutY(344);
@@ -266,7 +273,7 @@ public class TurtleMemory extends Application {
     bStartScreen.setPrefHeight(81);
     bStartScreen.setPrefWidth(219);
     bStartScreen.setOnAction(
-      (event) -> {bStartScreen_Action(event);} 
+    (event) -> {bStartScreen_Action(event);} 
     );
     bStartScreen.setText("Start Screen");
     bStartScreen.setFont(Font.font("Dialog", 30));
@@ -283,11 +290,25 @@ public class TurtleMemory extends Application {
     bQuit.setPrefHeight(41);
     bQuit.setPrefWidth(115);
     bQuit.setOnAction(
-      (event) -> {bQuit_Action(event);} 
+    (event) -> {bQuit_Action(event);} 
     );
     bQuit.setText("Quit");
     bQuit.setFont(Font.font("Dialog", 25));
     root.getChildren().add(bQuit);
+    lCurrentturns.setLayoutX(200);
+    lCurrentturns.setLayoutY(896);
+    lCurrentturns.setPrefHeight(20);
+    lCurrentturns.setPrefWidth(70);
+    lCurrentturns.setText("current turns");
+    lCurrentturns.setContentDisplay(ContentDisplay.CENTER);
+    root.getChildren().add(lCurrentturns);
+    lHighscore.setLayoutX(568);
+    lHighscore.setLayoutY(890);
+    lHighscore.setPrefHeight(20);
+    lHighscore.setPrefWidth(62);
+    lHighscore.setText("high score");
+    lHighscore.setContentDisplay(ContentDisplay.CENTER);
+    root.getChildren().add(lHighscore);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -342,33 +363,32 @@ public class TurtleMemory extends Application {
     } // end of for
   }
   public void HalbesSpielfeldZeichnen() {
-       for (int i = 0; i < 3; i++) {
-        if (i % 2 == 0) {
-          turtle1.turn(90);
-          turtle1.draw(732);
-          turtle1.turn(-90);
-          turtle1.move(185);
-        } // end of if 
-        if (i % 2 == 1) {
-          turtle1.turn(-90);
-          turtle1.draw(732);
-          turtle1.turn(90);
-          turtle1.move(185);
-        } // end of if
-      }
+    for (int i = 0; i < 3; i++) {
+      if (i % 2 == 0) {
+        turtle1.turn(90);
+        turtle1.draw(732);
+        turtle1.turn(-90);
+        turtle1.move(185);
+      } // end of if 
+      if (i % 2 == 1) {
+        turtle1.turn(-90);
+        turtle1.draw(732);
+        turtle1.turn(90);
+        turtle1.move(185);
+      } // end of if
     }
+  }
   public void NewGame() {
-   score = 0;
-   LastCardPositionIndex = 0;
-   numberField1.setInt(score);
-   MemoryMischen();
-   turtle1.clear();
-   SpielfeldZeichnen();
-   KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
-   Arrays.fill(StellenAufgedeckt, false);
-   Turns = 0;
-   numberField2.setInt(Turns);
-   numberField3.setInt(LowestTurns);
+    score = 0;
+    LastCardPositionIndex = 0;
+    MemoryMischen();
+    turtle1.clear();
+    SpielfeldZeichnen();
+    KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
+    Arrays.fill(StellenAufgedeckt, false);
+    Turns = 0;
+    numberField2.setInt(Turns);
+    numberField3.setInt(LowestTurns);
   }
   
   private void MemoryMischen() {
@@ -435,7 +455,7 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-70, 0, 1));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 80.0, XCoordinates, YCoordinates, Paths);
     } // end of if
-     if (Buchstabe == 'D') {
+    if (Buchstabe == 'D') {
       if (OffsetTrue) { XOffset = (int) (-0.5714286 * size); YOffset = - (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 0.0));
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 16.0, (float) -16.0));
@@ -460,13 +480,13 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 1, 2, 2, 3, 4, 5));
       PointDrawer(x + XOffset, y + YOffset, scale, XCoordinates, YCoordinates, Paths);
     } // end of if
-     if (Buchstabe == 'G') {
+    if (Buchstabe == 'G') {
       if (OffsetTrue) { XOffset = (int) (-0.2857143 * size); YOffset = (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) 62.0, (float) -24.0, (float) 96.0, (float) 15.0));
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 60.0, (float) -66.0, (float) -2.0, (float) -5.0));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-85, 0, 1, 2, 3));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 80.0, XCoordinates, YCoordinates, Paths);
-     }
+    }
     if (Buchstabe == 'H') {
       if (OffsetTrue) {
         XOffset = -30;
@@ -519,7 +539,7 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, scale, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == 'N') {
-       if (OffsetTrue) {
+      if (OffsetTrue) {
         XOffset = -30;
         YOffset = -60;
       } // end of if
@@ -565,7 +585,7 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 75.0, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == 'M') {
-       if (OffsetTrue) {
+      if (OffsetTrue) {
         XOffset = -35;
         YOffset = -55;
       } // end of if
@@ -576,7 +596,7 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, scale, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == 'T') {
-       if (OffsetTrue) {
+      if (OffsetTrue) {
         XOffset = -58;
         YOffset = -68;
       } // end of if
@@ -648,24 +668,24 @@ public class TurtleMemory extends Application {
   
 
   public static float[][] getArcPoints(float startX, float startY, float endX, float endY, float percentage, int n) {
-        double cx = (startX + endX) / 2.0;
-        double cy = (startY + endY) / 2.0;
-        double r = Math.sqrt((startX - endX) * (startX - endX) + (startY - endY) * (startY - endY)) / 2.0;
-        double startAngle = Math.atan2(startY - cy, startX - cx);
-        double endAngle = Math.atan2(endY - cy, endX - cx);
-        double angle = 2 * Math.PI * percentage / 100;
-        endAngle = startAngle + angle;
-        float[][] points = new float[n][2];
-        double angleStep = (endAngle - startAngle) / (n - 1);
-        for (int i = 0; i < n; i++) {
-          angle = startAngle + i * angleStep;
-          double x = cx + r * Math.cos(angle);
-          double y = cy + r * Math.sin(angle);
-          points[i][0] = (float) x;
-          points[i][1] = (float) y;
-        }
-        return points;
-}
+    double cx = (startX + endX) / 2.0;
+    double cy = (startY + endY) / 2.0;
+    double r = Math.sqrt((startX - endX) * (startX - endX) + (startY - endY) * (startY - endY)) / 2.0;
+    double startAngle = Math.atan2(startY - cy, startX - cx);
+    double endAngle = Math.atan2(endY - cy, endX - cx);
+    double angle = 2 * Math.PI * percentage / 100;
+    endAngle = startAngle + angle;
+    float[][] points = new float[n][2];
+    double angleStep = (endAngle - startAngle) / (n - 1);
+    for (int i = 0; i < n; i++) {
+      angle = startAngle + i * angleStep;
+      double x = cx + r * Math.cos(angle);
+      double y = cy + r * Math.sin(angle);
+      points[i][0] = (float) x;
+      points[i][1] = (float) y;
+    }
+    return points;
+  }
 
   
   private void nEckZeichnen(int x, int y, int Ecken, float Umfang, int Rotation, float Kreisteil) {
@@ -721,9 +741,9 @@ public class TurtleMemory extends Application {
     } // end of if
     if (! AleadySolvedButtonIndexes.contains(ButtonIndex) && LastCardPositionIndex != ButtonIndex + 1) {
       if (GameMode == "Buchstaben") {
-      MemoryKarteChecken(ButtonIndex);
-      RedrawService(ButtonIndex + 1);
-      BuchstabenEnfügen(ButtonIndex);
+        MemoryKarteChecken(ButtonIndex);
+        RedrawService(ButtonIndex + 1);
+        BuchstabenEnfügen(ButtonIndex);
       } // end of if
     } // end of if
     if (score > 7) {
@@ -801,7 +821,6 @@ public class TurtleMemory extends Application {
         score++;
         AleadySolvedButtonIndexes.add(KartenIndex);
         AleadySolvedButtonIndexes.add(LastCardPositionIndex - 1);
-        numberField1.setInt(score);
       } // end of if
     } // end of if
     if (KartenAnzahlZähler == 1) {
@@ -818,11 +837,18 @@ public class TurtleMemory extends Application {
   
   public void SetMemoryUIVisibility(boolean visisble) {
     for (int i = 0; i < MemoryButtons.length; i++) {
-        MemoryButtons[i].setVisible(visisble);
-      }
-    numberField1.setVisible(visisble);
+      MemoryButtons[i].setVisible(visisble);
+    }
     numberField2.setVisible(visisble);
-    numberField3.setVisible(visisble);
+    lCurrentturns.setVisible(visisble);
+    if (LowestTurns > 0) {
+      numberField3.setVisible(visisble);
+      lHighscore.setVisible(visisble);    
+    } // end of if
+    else {
+      numberField3.setVisible(false);
+      lHighscore.setVisible(false);
+    } // end of if-else
     bQuit.setVisible(visisble);
   }
   
@@ -899,7 +925,7 @@ public class TurtleMemory extends Application {
 
   public void button12_Action(Event evt) {
     // TODO hier Quelltext einfügen
-     ButtonService(10);
+    ButtonService(10);
   } // end of button12_Action
 
   public void button13_Action(Event evt) {
