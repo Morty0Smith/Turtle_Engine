@@ -27,7 +27,6 @@ import javafx.scene.text.Font;
 public class TurtleMemory extends Application {
   // Anfang Attribute
   private Turtle turtle1 = new Turtle();
-  private Button button1 = new Button();
   private Button button2 = new Button();
   private Button button3 = new Button();
   private Button button4 = new Button();
@@ -44,9 +43,9 @@ public class TurtleMemory extends Application {
   private Button button15 = new Button();
   private Button button16 = new Button();
   private Button button17 = new Button();
-  private Button button18 = new Button();
   private String GameMode = "Buchstaben";
   private List<Integer> AleadySolvedButtonIndexes = new ArrayList<>();
+  private boolean[] StellenAufgedeckt = new boolean[16]; 
   private int LastCardPositionIndex = 0;
   private int[] xPositions = {-280, -87, 89, 285};
   private int[] yPositions = {279, 93, -93, -279};
@@ -57,16 +56,25 @@ public class TurtleMemory extends Application {
   private int score = 0;
   private char LetzteKarte = '*';
   private char VorletzteKarte = '*';
-  private Button[] MemoryButtons = {button1, button2, button3, button4, button5, button6,button7,button8, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17,button18};
+  private int Turns = 0;
+  private int LowestTurns = 0;
+  private Button[] MemoryButtons = {button2, button3, button4, button5, button6,button7,button8, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17};
   
   private NumberField numberField1 = new NumberField();
   private Label lTurtleMemory = new Label();
   private Button bStart = new Button();
+  private NumberField numberField2 = new NumberField();
+  private NumberField numberField3 = new NumberField();
+  private Label label1 = new Label();
+  private Label lTurns10 = new Label();
+  private Button bStartScreen = new Button();
+  private Label l10 = new Label();
+  private Button bQuit = new Button();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 988, 765);
+    Scene scene = new Scene(root, 988, 924);
     // Anfang Komponenten
     
     turtle1.setLayoutX(38);
@@ -77,14 +85,6 @@ public class TurtleMemory extends Application {
     turtle1.setOriginY(374);
     root.getChildren().add(turtle1);
     turtle1.setAnimated(false);
-    button1.setLayoutX(853);
-    button1.setLayoutY(89);
-    button1.setPrefHeight(25);
-    button1.setPrefWidth(75);
-    button1.setOnAction(
-      (event) -> {button1_Action(event);} 
-    );
-    root.getChildren().add(button1);
     button3.setLayoutX(248);
     button3.setLayoutY(96);
     button3.setPrefHeight(145);
@@ -218,14 +218,6 @@ public class TurtleMemory extends Application {
     numberField1.setPrefHeight(25);
     numberField1.setPrefWidth(75);
     root.getChildren().add(numberField1);
-    button18.setLayoutX(856);
-    button18.setLayoutY(272);
-    button18.setPrefHeight(25);
-    button18.setPrefWidth(75);
-    button18.setOnAction(
-      (event) -> {button18_Action(event);} 
-    );
-    root.getChildren().add(button18);
     lTurtleMemory.setLayoutX(203);
     lTurtleMemory.setLayoutY(81);
     lTurtleMemory.setPrefHeight(116);
@@ -243,6 +235,59 @@ public class TurtleMemory extends Application {
     bStart.setText("Start");
     bStart.setFont(Font.font("Dialog", 50));
     root.getChildren().add(bStart);
+    numberField2.setLayoutX(856);
+    numberField2.setLayoutY(344);
+    numberField2.setPrefHeight(25);
+    numberField2.setPrefWidth(75);
+    root.getChildren().add(numberField2);
+    numberField3.setLayoutX(854);
+    numberField3.setLayoutY(404);
+    numberField3.setPrefHeight(25);
+    numberField3.setPrefWidth(75);
+    root.getChildren().add(numberField3);
+    label1.setLayoutX(288);
+    label1.setLayoutY(344);
+    label1.setPrefHeight(76);
+    label1.setPrefWidth(270);
+    label1.setText("You won!");
+    label1.setContentDisplay(ContentDisplay.CENTER);
+    label1.setFont(Font.font("Dialog", 60));
+    root.getChildren().add(label1);
+    lTurns10.setLayoutX(354);
+    lTurns10.setLayoutY(561);
+    lTurns10.setPrefHeight(28);
+    lTurns10.setPrefWidth(118);
+    lTurns10.setText("Turns: 10");
+    lTurns10.setFont(Font.font("Dialog", 25));
+    lTurns10.setContentDisplay(ContentDisplay.CENTER);
+    root.getChildren().add(lTurns10);
+    bStartScreen.setLayoutX(304);
+    bStartScreen.setLayoutY(440);
+    bStartScreen.setPrefHeight(81);
+    bStartScreen.setPrefWidth(219);
+    bStartScreen.setOnAction(
+      (event) -> {bStartScreen_Action(event);} 
+    );
+    bStartScreen.setText("Start Screen");
+    bStartScreen.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(bStartScreen);
+    l10.setLayoutX(398);
+    l10.setLayoutY(249);
+    l10.setPrefHeight(44);
+    l10.setPrefWidth(46);
+    l10.setText("10");
+    l10.setFont(Font.font("Dialog", 35));
+    root.getChildren().add(l10);
+    bQuit.setLayoutX(362);
+    bQuit.setLayoutY(842);
+    bQuit.setPrefHeight(41);
+    bQuit.setPrefWidth(115);
+    bQuit.setOnAction(
+      (event) -> {bQuit_Action(event);} 
+    );
+    bQuit.setText("Quit");
+    bQuit.setFont(Font.font("Dialog", 25));
+    root.getChildren().add(bQuit);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -268,6 +313,7 @@ public class TurtleMemory extends Application {
     primaryStage.setTitle("TurtleMemory");
     primaryStage.setScene(scene);
     primaryStage.show();
+    SwitchToStartScreen();
   } // end of public TurtleMemory
   
   // Anfang Methoden
@@ -311,17 +357,19 @@ public class TurtleMemory extends Application {
         } // end of if
       }
     }
-  
-  public void button1_Action(Event evt) {
-    // TODO hier Quelltext einfügen
-    score = 0;
-    LastCardPositionIndex = 0;
-    numberField1.setInt(score);
-    MemoryMischen();
-    turtle1.clear();
-    SpielfeldZeichnen();
-    KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
-  } // end of button1_Action
+  public void NewGame() {
+   score = 0;
+   LastCardPositionIndex = 0;
+   numberField1.setInt(score);
+   MemoryMischen();
+   turtle1.clear();
+   SpielfeldZeichnen();
+   KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
+   Arrays.fill(StellenAufgedeckt, false);
+   Turns = 0;
+   numberField2.setInt(Turns);
+   numberField3.setInt(LowestTurns);
+  }
   
   private void MemoryMischen() {
     AleadySolvedButtonIndexes.clear();
@@ -667,12 +715,28 @@ public class TurtleMemory extends Application {
   }
   
   private void ButtonService(int ButtonIndex) {
+    if (StellenAufgedeckt[ButtonIndex] == false) {
+      Turns++;
+      numberField2.setInt(Turns);
+    } // end of if
     if (! AleadySolvedButtonIndexes.contains(ButtonIndex) && LastCardPositionIndex != ButtonIndex + 1) {
       if (GameMode == "Buchstaben") {
       MemoryKarteChecken(ButtonIndex);
       RedrawService(ButtonIndex + 1);
       BuchstabenEnfügen(ButtonIndex);
       } // end of if
+    } // end of if
+    if (score > 7) {
+      if (LowestTurns == 0) {
+        LowestTurns = Turns;
+      } else {
+        if (Turns < LowestTurns) {
+          LowestTurns = Turns;
+          System.out.println("New High Score : " + Turns);
+        } // end of if
+      } // end of if-else
+      numberField3.setInt(LowestTurns);
+      DisplayWin();
     } // end of if
   }
   private void BuchstabenEnfügen(int ButtonIndex) {
@@ -689,7 +753,16 @@ public class TurtleMemory extends Application {
       Ausnahmen.add(AleadySolvedButtonIndexes.get(i) + 1);
     }
     Ausnahmen.add(ClickIndex);
-    Ausnahmen.add(LastCardPositionIndex);
+    if (LastCardPositionIndex != 0) {
+      Ausnahmen.add(LastCardPositionIndex);
+    } // end of if 
+    
+    //Ausnahmen auf StellenAufgedeckt übertragen, damit turns richtig gezählt werden können
+    Arrays.fill(StellenAufgedeckt, false);
+    for (int i = 0; i < Ausnahmen.size(); i++) {
+      StellenAufgedeckt[Ausnahmen.get(i) - 1] = true;
+    }
+    
     KreuzFeldZeichnen(Ausnahmen);
     for (int i = 0; i < AleadySolvedButtonIndexes.size(); i++) {
       BuchstabenEnfügen(AleadySolvedButtonIndexes.get(i));
@@ -698,6 +771,20 @@ public class TurtleMemory extends Application {
       BuchstabenEnfügen(LastCardPositionIndex - 1);
     } // end of if
     LastCardPositionIndex = ClickIndex;
+  }
+  
+  private void DisplayWin() {
+    turtle1.clear();
+    SetWinScreenUIVisibility(true);
+    SetMemoryUIVisibility(false);
+    setStartScreenUIVisibily(false);
+    l10.setText("" + LowestTurns);
+    lTurns10.setText("Turns: " + Turns);
+    int XOffset = 0; int YOffset = 0;
+    ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -25.0, (float) 25.0, (float) 25.0, (float) -25.0, (float) -10.0, (float) 10.0, (float) 10.396826, (float) 5.0, (float) 0.0, (float) -5.0, (float) -10.0));
+    ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 13.0, (float) 13.0, (float) -13.0, (float) -13.0, (float) 17.0, (float) 17.0, (float) 27.0, (float) 22.0, (float) 27.0, (float) 22.0, (float) 27.0));
+    ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 5, 8, 7, 6, 7, 9, 8, 9, 10, 4, 10));
+    PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths); 
   }
   
   private void MemoryKarteChecken(int KartenIndex) {
@@ -722,31 +809,41 @@ public class TurtleMemory extends Application {
     } // end of if
   }
   
+  public void SetWinScreenUIVisibility(boolean visisble) {
+    label1.setVisible(visisble);
+    l10.setVisible(visisble);
+    bStartScreen.setVisible(visisble);
+    lTurns10.setVisible(visisble);
+  }
+  
+  public void SetMemoryUIVisibility(boolean visisble) {
+    for (int i = 0; i < MemoryButtons.length; i++) {
+        MemoryButtons[i].setVisible(visisble);
+      }
+    numberField1.setVisible(visisble);
+    numberField2.setVisible(visisble);
+    numberField3.setVisible(visisble);
+    bQuit.setVisible(visisble);
+  }
+  
+  public void setStartScreenUIVisibily(boolean visible) {
+    lTurtleMemory.setVisible(visible);
+    bStart.setVisible(visible);
+  }
+  
   
   public void SwitchToStartScreen() {
-    for (int i = 0; i < MemoryButtons.length; i++) {
-      MemoryButtons[i].setVisible(false);
-    }
-    numberField1.setVisible(false);
-    lTurtleMemory.setVisible(true);
-    bStart.setVisible(true);
+    SetWinScreenUIVisibility(false);
+    SetMemoryUIVisibility(false);
+    setStartScreenUIVisibily(true);
     turtle1.clear();
   }
   
   public void StartGame() {
-    for (int i = 0; i < MemoryButtons.length; i++) {
-      MemoryButtons[i].setVisible(true);
-    }
-    numberField1.setVisible(true);
-    lTurtleMemory.setVisible(false);
-    bStart.setVisible(false);
-    score = 0;
-    LastCardPositionIndex = 0;
-    numberField1.setInt(score);
-    MemoryMischen();
-    turtle1.clear();
-    SpielfeldZeichnen();
-    KreuzFeldZeichnen(new ArrayList<>(Arrays.asList()));
+    setStartScreenUIVisibily(false);
+    SetMemoryUIVisibility(true);
+    SetWinScreenUIVisibility(false);
+    NewGame();
   }
 
   public void button2_Action(Event evt) {
@@ -830,16 +927,20 @@ public class TurtleMemory extends Application {
     ButtonService(12);
   } // end of button17_Action
 
-  public void button18_Action(Event evt) {
-    // TODO hier Quelltext einfügen
-    SwitchToStartScreen();
-  } // end of button18_Action
-
-
   public void bStart_Action(Event evt) {
     // TODO hier Quelltext einfügen
     StartGame();
   } // end of bStart_Action
+
+  public void bStartScreen_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    SwitchToStartScreen();
+  } // end of bStartScreen_Action
+
+  public void bQuit_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    SwitchToStartScreen();
+  } // end of bQuit_Action
 
   // Ende Methoden
 } // end of class TurtleMemory
