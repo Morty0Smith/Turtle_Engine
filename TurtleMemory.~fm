@@ -1,10 +1,10 @@
 object TurtleMemory: TFXGuiForm
-  Left = 1551
-  Top = 199
+  Left = 712
+  Top = 282
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleMemory'
   ClientHeight = 923
-  ClientWidth = 833
+  ClientWidth = 829
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -16,7 +16,7 @@ object TurtleMemory: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -644,7 +644,7 @@ object TurtleMemory: TFXGuiForm
   object lTurtleMemory: TFXLabel
     Tag = 101
     Left = 203
-    Top = 81
+    Top = 233
     Width = 462
     Height = 116
     Hint = 'label1'
@@ -656,7 +656,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clBtnFace
     LayoutX = 203
-    LayoutY = 81
+    LayoutY = 233
     Disable = False
     Cache = False
     dragOver = ''
@@ -836,9 +836,9 @@ object TurtleMemory: TFXGuiForm
   end
   object bStartScreen: TFXButton
     Tag = 105
-    Left = 304
+    Left = 296
     Top = 440
-    Width = 219
+    Width = 238
     Height = 81
     Hint = 'button19'
     Font.Charset = DEFAULT_CHARSET
@@ -848,19 +848,20 @@ object TurtleMemory: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 304
+    LayoutX = 296
     LayoutY = 440
     Disable = False
     Cache = False
     dragOver = ''
     PrefHeight = 81
-    PrefWidth = 219
+    PrefWidth = 238
     SnapToPixel = False
     Alignment = CENTER
     ContentDisplay = _CD_LEFT
     EllipsisString = '...'
     Underline = False
     TextFill = 3355443
+    Graphic = '(Graphic)'
     GraphicTextGap = 4
     MnemonicParsing = False
     Text = 'Start Screen'

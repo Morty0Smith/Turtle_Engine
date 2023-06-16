@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
 import javafx.geometry.*;
+import javafx.scene.image.*;
 
 /**
  *
@@ -76,7 +77,7 @@ public class TurtleMemory extends Application {
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 833, 924);
+    Scene scene = new Scene(root, 829, 924);
     // Anfang Komponenten
     
     turtle1.setLayoutX(38);
@@ -216,7 +217,7 @@ public class TurtleMemory extends Application {
     );
     root.getChildren().add(button2);
     lTurtleMemory.setLayoutX(203);
-    lTurtleMemory.setLayoutY(81);
+    lTurtleMemory.setLayoutY(233);
     lTurtleMemory.setPrefHeight(116);
     lTurtleMemory.setPrefWidth(462);
     lTurtleMemory.setText("Turtle Memory");
@@ -229,7 +230,7 @@ public class TurtleMemory extends Application {
     bStart.setOnAction(
     (event) -> {bStart_Action(event);} 
     );
-    bStart.setText("Start");
+    bStart.setText("");
     bStart.setFont(Font.font("Dialog", 50));
     root.getChildren().add(bStart);
     numberField2.setLayoutX(200);
@@ -268,10 +269,10 @@ public class TurtleMemory extends Application {
     lTurns10.setFont(Font.font("Dialog", 25));
     lTurns10.setContentDisplay(ContentDisplay.CENTER);
     root.getChildren().add(lTurns10);
-    bStartScreen.setLayoutX(304);
+    bStartScreen.setLayoutX(296);
     bStartScreen.setLayoutY(440);
     bStartScreen.setPrefHeight(81);
-    bStartScreen.setPrefWidth(219);
+    bStartScreen.setPrefWidth(238);
     bStartScreen.setOnAction(
     (event) -> {bStartScreen_Action(event);} 
     );
@@ -328,7 +329,7 @@ public class TurtleMemory extends Application {
     button16.setStyle("-fx-background-color: transparent;");
     button17.setStyle("-fx-background-color: transparent;");
     lTurtleMemory.setVisible(false);
-    bStart.setVisible(false);
+    bStart.setStyle("-fx-background-color: transparent;");
     
     primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("TurtleMemory");
@@ -428,6 +429,10 @@ public class TurtleMemory extends Application {
     turtle1.draw(Linienlänge);
     turtle1.turn(180);
     turtle1.draw(Linienlänge/2);
+  }
+  
+  private void LogoZeichnen() {
+    
   }
   
   private void BuchstabenZeichenen(char Buchstabe, int x, int y, int size, boolean OffsetTrue) {
@@ -664,6 +669,41 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 3, 1, 3, 2));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 11.666667, XCoordinates, YCoordinates, Paths);
     } // end of if
+    if (Buchstabe == ';') {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -49.0, (float) -10.0, (float) 17.0, (float) -23.0, (float) -18.0, (float) 0.0, (float) -23.0, (float) -10.0, (float) 25.0, (float) 69.0, (float) 33.0, (float) 87.0, (float) 43.0, (float) 42.0, (float) 57.0, (float) 61.0, (float) 73.0, (float) 18.0, (float) 16.0, (float) 42.0, (float) 43.0, (float) -7.0, (float) -7.0, (float) -5.0, (float) -6.0, (float) 40.0, (float) 40.0, (float) 18.0, (float) 18.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -35.0, (float) -64.0, (float) -20.0, (float) 7.0, (float) -13.0, (float) -26.0, (float) -38.0, (float) -19.0, (float) -19.0, (float) -1.0, (float) -64.0, (float) -51.0, (float) -49.0, (float) -25.0, (float) -43.0, (float) -15.0, (float) -38.0, (float) 61.0, (float) 7.0, (float) 25.0, (float) 13.0, (float) 23.0, (float) 12.0, (float) 49.0, (float) 61.0, (float) 48.0, (float) 58.0, (float) 59.0, (float) 81.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 7, 8, 9, 11, 9, 11, 10, 10, 8, 12, 13, 14, 13, 14, 15, 16, 15, -50, 17, 18, -50, 18, 17, -50, 19, 20, -50, 20, 19, -50, 21, 22, -50, 22, 21, -50, 23, 24, -50, 24, 23, -50, 25, 26, -50, 26, 25, -50, 27, 28, -50, 28, 27));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
+    } // end of if
+    if (Buchstabe == '0') {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -23.0, (float) 23.0, (float) 23.0, (float) -23.0, (float) -4.0, (float) -4.0, (float) 7.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -9.0, (float) -9.0, (float) 9.0, (float) 9.0, (float) -5.0, (float) 5.0, (float) 0.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 5, 6, 4));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 11.666667, XCoordinates, YCoordinates, Paths);
+    } // end of if
+  }
+  
+  private void TiereZeichenen(String Tier, int x, int y, int size, boolean OffsetTrue) {
+    int XOffset = 0;
+    int YOffset = 0;
+    turtle1.moveto(x,y);
+    if (Tier == "Huhn") {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 0.0, (float) 22.259998, (float) 31.8, (float) 31.8, (float) 31.8, (float) 22.259998, (float) 22.259998, (float) 22.259998, (float) -19.079998, (float) -19.079998, (float) 19.079998, (float) 19.079998, (float) 19.079998, (float) 19.079998, (float) -18.55, (float) -18.55, (float) 0.0, (float) 0.0, (float) -12.719999, (float) 13.779999, (float) -10.599999, (float) 39.749996, (float) -6.8899994, (float) 7.4199996, (float) -34.98, (float) 7.95));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 45.05, (float) -82.149994, (float) -2.6499999, (float) 86.38999, (float) 64.13, (float) 48.229996, (float) 10.07, (float) 22.789999, (float) 25.97, (float) -5.83, (float) 3.7099998, (float) 3.7099998, (float) -5.83, (float) -1.5899999, (float) -0.53, (float) -1.5899999, (float) -0.53, (float) -18.55, (float) -30.739998, (float) -24.909998, (float) -24.909998, (float) -26.499998, (float) -55.119995, (float) -59.889996, (float) -48.76, (float) -28.089998, (float) -59.359997));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-50, 0, 1, -50, 1, 0, -30, 3, 2, -30, 4, 6, -30, 5, 7, -50, 5, 4, -50, 4, 3, -50, 9, 10, -50, 10, 9, -50, 11, 12, -50, 12, 11, -50, 13, 14, -50, 14, 13, -50, 15, 16, -50, 16, 15, 17, 19, 17, 20, 18, 20, 18, 19, -20, 21, 22, -30, 23, 24, -20, 26, 25));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
+    } // end of if
+    
+  if (Tier == "Schwein") {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -72.0, (float) 72.0, (float) -30.000002, (float) -64.8, (float) 18.0, (float) -30.000002, (float) -70.8, (float) -85.200005, (float) -36.0, (float) 61.800003, (float) 51.000004, (float) 79.200005, (float) 48.600002, (float) -36.0, (float) 37.800003, (float) -36.600002, (float) -36.600002, (float) 36.600002, (float) 36.600002, (float) -37.2, (float) 36.600002, (float) 40.2, (float) 33.0, (float) 0.6, (float) 18.6, (float) 35.4, (float) -33.0, (float) 3.0, (float) -28.800001, (float) -36.0, (float) -36.600002, (float) 37.2, (float) 36.0, (float) -13.8, (float) -13.8, (float) 13.8, (float) 13.8));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 0.0, (float) 0.0, (float) 25.2, (float) -25.2, (float) 30.6, (float) 61.2, (float) 27.000002, (float) 46.800003, (float) 29.400002, (float) 76.200005, (float) 58.2, (float) 6.0, (float) -25.800001, (float) 46.800003, (float) 15.000001, (float) 1.2, (float) 1.2, (float) 15.000001, (float) -32.4, (float) 16.800001, (float) 6.0, (float) -37.2, (float) -9.0, (float) -20.400002, (float) -12.0, (float) -60.000004, (float) -43.800003, (float) -6.6000004, (float) 9.0, (float) 7.8, (float) 8.400001, (float) 7.8, (float) -15.000001, (float) -28.2, (float) -28.2, (float) -15.000001));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-50, 0, 1, -10, 1, 2, -10, 3, 4, -25, 6, 5, -25, 8, 7, -25, 9, 10, -25, 11, 12, -25, 14, 13, -50, 15, 16, -50, 16, 15, -50, 17, 18, -50, 18, 17, -30, 19, 20, -20, 22, 23, -30, 25, 26, -20, 28, 27, -50, 29, 30, -50, 30, 29, -50, 31, 32, -50, 32, 31, -50, 33, 34, -50, 34, 33, -50, 35, 36, -50, 36, 35));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
+  } // end of if
   }
   
 
@@ -691,8 +731,6 @@ public class TurtleMemory extends Application {
   private void nEckZeichnen(int x, int y, int Ecken, float Umfang, int Rotation, float Kreisteil) {
     turtle1.moveto(x,y);
     turtle1.turnto(Rotation);
-    if(Ecken > 20) {
-    }
     for (int i = 0; i < (float) Ecken * Kreisteil; i++) {
       turtle1.draw(Umfang/(float)Ecken);
       turtle1.turn(360/Ecken);
@@ -762,8 +800,8 @@ public class TurtleMemory extends Application {
   private void BuchstabenEnfügen(int ButtonIndex) {
     int XIndex =  ButtonIndex%4;
     int YIndex = ButtonIndex/4;
-    BuchstabenZeichenen(Buchstaben[ButtonIndex], xPositions[XIndex], yPositions[YIndex], 70, true);
-    //BuchstabenZeichenen('L', xPositions[XIndex], yPositions[YIndex], 70, true);
+    //BuchstabenZeichenen(Buchstaben[ButtonIndex], xPositions[XIndex], yPositions[YIndex], 70, true);
+    TiereZeichenen("Schwein", xPositions[XIndex], yPositions[YIndex], 60, true);
   }
   private void RedrawService(int ClickIndex) {
     turtle1.clear();
@@ -804,7 +842,9 @@ public class TurtleMemory extends Application {
     ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -25.0, (float) 25.0, (float) 25.0, (float) -25.0, (float) -10.0, (float) 10.0, (float) 10.396826, (float) 5.0, (float) 0.0, (float) -5.0, (float) -10.0));
     ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 13.0, (float) 13.0, (float) -13.0, (float) -13.0, (float) 17.0, (float) 17.0, (float) 27.0, (float) 22.0, (float) 27.0, (float) 22.0, (float) 27.0));
     ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 5, 8, 7, 6, 7, 9, 8, 9, 10, 4, 10));
-    PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths); 
+    PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths);
+    BuchstabenZeichenen(';', -20,-210, 40, false);
+    
   }
   
   private void MemoryKarteChecken(int KartenIndex) {
@@ -854,7 +894,9 @@ public class TurtleMemory extends Application {
   
   public void setStartScreenUIVisibily(boolean visible) {
     lTurtleMemory.setVisible(visible);
-    bStart.setVisible(visible);
+    bStart.setLayoutY(430);
+    bStart.setLayoutX(303);
+    lTurtleMemory.setLayoutY(220);
   }
   
   
@@ -863,6 +905,10 @@ public class TurtleMemory extends Application {
     SetMemoryUIVisibility(false);
     setStartScreenUIVisibily(true);
     turtle1.clear();
+    BuchstabenZeichenen(';', -20,-180, 50, false);
+    BuchstabenZeichenen('0', 0, -40, 60, false);
+    nEckZeichnen(-250,-250,4,2000,0,(float)100);
+    nEckZeichnen(-250,50,2,1000,0,(float)100);
   }
   
   public void StartGame() {
