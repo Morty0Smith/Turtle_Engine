@@ -1,6 +1,6 @@
 object TurtleMemory: TFXGuiForm
-  Left = 539
-  Top = 436
+  Left = 1234
+  Top = 423
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleMemory'
   ClientHeight = 923
@@ -836,7 +836,7 @@ object TurtleMemory: TFXGuiForm
   end
   object bStartScreen: TFXButton
     Tag = 105
-    Left = 296
+    Left = 288
     Top = 440
     Width = 238
     Height = 81
@@ -848,7 +848,7 @@ object TurtleMemory: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 296
+    LayoutX = 288
     LayoutY = 440
     Disable = False
     Cache = False
@@ -1005,5 +1005,109 @@ object TurtleMemory: TFXGuiForm
     Text = 'high score'
     TextAlignment = _TA_LEFT
     WrapText = False
+  end
+  object bSettings: TFXButton
+    Tag = 105
+    Left = 552
+    Top = 432
+    Width = 99
+    Height = 89
+    Hint = 'button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -18
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 552
+    LayoutY = 432
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 89
+    PrefWidth = 99
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Settings'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bSettings_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object comboBox1: TFXComboBox
+    Tag = 110
+    Left = 363
+    Top = 378
+    Width = 120
+    Height = 27
+    Hint = 'comboBox1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = 16053492
+    LayoutX = 363
+    LayoutY = 378
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 27
+    PrefWidth = 120
+    SnapToPixel = False
+    Editable = False
+    PromptText = ''
+    Value = 'Buchstaben'
+    action = ''
+    showing = ''
+    VisibleRowCount = 10
+    Items.Strings = (
+      'Buchstaben'
+      'Tiere')
+  end
+  object bZurueckzumHaubtmenue: TFXButton
+    Tag = 105
+    Left = 302
+    Top = 444
+    Width = 203
+    Height = 65
+    Hint = 'button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -18
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 302
+    LayoutY = 444
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 65
+    PrefWidth = 203
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Zur'#252'ck zum Haubtmen'#252
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'bZurueckzumHaubtmenue_Action'
+    CancelButton = False
+    DefaultButton = False
   end
 end

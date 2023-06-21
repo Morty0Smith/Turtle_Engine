@@ -17,6 +17,7 @@ import javafx.scene.text.*;
 import javafx.scene.text.Font;
 import javafx.geometry.*;
 import javafx.scene.image.*;
+import javafx.collections.*;
 
 /**
  *
@@ -54,7 +55,7 @@ public class TurtleMemory extends Application {
   private char[] Buchstaben = new char[16];
   private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F', 'G','H','I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   private String[] Tiere = new String[16];
-  private String[] AlleTiere = {"Huhn", "Schwein"};
+  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege"};
   private boolean[] BuchstabenBefüllt = new boolean[16];
   private int KartenAnzahlZähler = 0;
   private int score = 0;
@@ -74,6 +75,11 @@ public class TurtleMemory extends Application {
   private Button bQuit = new Button();
   private Label lCurrentturns = new Label();
   private Label lHighscore = new Label();
+  private Button bSettings = new Button();
+  private ComboBox<String> comboBox1 = new ComboBox<>();
+      private ObservableList<String> comboBox1ObservableList = 
+              FXCollections.observableArrayList();
+  private Button bZurueckzumHaubtmenue = new Button();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -270,7 +276,7 @@ public class TurtleMemory extends Application {
     lTurns10.setFont(Font.font("Dialog", 25));
     lTurns10.setContentDisplay(ContentDisplay.CENTER);
     root.getChildren().add(lTurns10);
-    bStartScreen.setLayoutX(296);
+    bStartScreen.setLayoutX(288);
     bStartScreen.setLayoutY(440);
     bStartScreen.setPrefHeight(81);
     bStartScreen.setPrefWidth(238);
@@ -311,6 +317,35 @@ public class TurtleMemory extends Application {
     lHighscore.setText("high score");
     lHighscore.setContentDisplay(ContentDisplay.CENTER);
     root.getChildren().add(lHighscore);
+    bSettings.setLayoutX(552);
+    bSettings.setLayoutY(432);
+    bSettings.setPrefHeight(89);
+    bSettings.setPrefWidth(99);
+    bSettings.setOnAction(
+      (event) -> {bSettings_Action(event);} 
+    );
+    bSettings.setText("Settings");
+    bSettings.setFont(Font.font("Dialog", 18));
+    root.getChildren().add(bSettings);
+    comboBox1.setLayoutX(363);
+    comboBox1.setLayoutY(378);
+    comboBox1.setPrefHeight(27);
+    comboBox1.setPrefWidth(120);
+    comboBox1.setItems(comboBox1ObservableList);
+    comboBox1ObservableList.add("Buchstaben");
+    comboBox1ObservableList.add("Tiere");
+    comboBox1.setValue("Buchstaben");
+    root.getChildren().add(comboBox1);
+    bZurueckzumHaubtmenue.setLayoutX(302);
+    bZurueckzumHaubtmenue.setLayoutY(444);
+    bZurueckzumHaubtmenue.setPrefHeight(65);
+    bZurueckzumHaubtmenue.setPrefWidth(203);
+    bZurueckzumHaubtmenue.setOnAction(
+      (event) -> {bZurueckzumHaubtmenue_Action(event);} 
+    );
+    bZurueckzumHaubtmenue.setText("Zurück zum Haubtmenü");
+    bZurueckzumHaubtmenue.setFont(Font.font("Dialog", 18));
+    root.getChildren().add(bZurueckzumHaubtmenue);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -433,12 +468,6 @@ public class TurtleMemory extends Application {
         Tiere[Zufallspostion2] = AlleTiere[Zufallsbchstabe];
       } // end of for   
     } // end of if   
-    if (GameMode == "Buchstaben") {
-      System.out.println(Arrays.toString(Buchstaben));
-    } // end of if
-    else {
-      System.out.println(Arrays.toString(Tiere));
-    } // end of if-else
   }
   
   
@@ -727,6 +756,14 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-50, 0, 1, -10, 1, 2, -10, 3, 4, -25, 6, 5, -25, 8, 7, -25, 9, 10, -25, 11, 12, -25, 14, 13, -50, 15, 16, -50, 16, 15, -50, 17, 18, -50, 18, 17, -30, 19, 20, -20, 22, 23, -30, 25, 26, -20, 28, 27, -50, 29, 30, -50, 30, 29, -50, 31, 32, -50, 32, 31, -50, 33, 34, -50, 34, 33, -50, 35, 36, -50, 36, 35));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
+    
+    if (Tier == "Ziege") {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -45.600002, (float) 49.2, (float) -30.000002, (float) -12.0, (float) -73.200005, (float) -130.20001, (float) 46.2, (float) 40.800003, (float) 41.4, (float) 120.00001, (float) 35.4, (float) 79.200005, (float) 64.8, (float) 48.0, (float) -44.4, (float) -30.000002, (float) -55.800003, (float) -74.4, (float) -55.800003, (float) -34.2, (float) -42.600002, (float) -36.0, (float) 36.0, (float) 48.0, (float) 35.4, (float) -12.6, (float) 12.0, (float) 0.0, (float) 0.0, (float) 0.0, (float) -9.0, (float) 9.0, (float) -30.000002, (float) -30.000002, (float) 30.000002, (float) 30.000002, (float) 30.000002, (float) -29.400002, (float) -29.400002, (float) 30.000002, (float) 30.000002));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -30.000002, (float) 37.2, (float) 53.4, (float) 60.000004, (float) 39.0, (float) 40.2, (float) 21.6, (float) 85.8, (float) 86.4, (float) 9.6, (float) -1.2, (float) 26.400002, (float) 70.200005, (float) 15.000001, (float) 37.2, (float) 58.2, (float) -17.400002, (float) 23.400002, (float) -17.400002, (float) 59.4, (float) 13.8, (float) -45.0, (float) -45.0, (float) 15.000001, (float) 6.0, (float) -61.2, (float) -61.2, (float) -82.8, (float) -63.000004, (float) -39.600002, (float) -30.6, (float) -30.6, (float) 6.6000004, (float) -4.2000003, (float) -4.2000003, (float) 6.6000004, (float) -24.0, (float) 1.2, (float) 0.0, (float) 0.0, (float) 1.2));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-30, 1, 0, -20, 3, 4, -10, 2, 5, -20, 7, 6, -10, 8, 9, -20, 11, 10, -20, 13, 12, -20, 14, 16, -20, 17, 15, 20, 21, 22, 23, -30, 21, 24, 25, 27, 26, 27, 29, 28, 29, 30, 29, 31, -100, 32, 33, -100, 34, 35, -100, 37, 38, -100, 39, 40));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
+    } // end of if
   }
   
 
@@ -862,6 +899,7 @@ public class TurtleMemory extends Application {
     SetWinScreenUIVisibility(true);
     SetMemoryUIVisibility(false);
     setStartScreenUIVisibily(false);
+    SetSettingsScreenVisibility(false);
     l10.setText("" + LowestTurns);
     lTurns10.setText("Turns: " + Turns);
     int XOffset = 0; int YOffset = 0;
@@ -871,6 +909,14 @@ public class TurtleMemory extends Application {
     PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths);
     BuchstabenZeichenen(';', -20,-210, 40, false);
     
+  }
+  
+  public void DisplaySettings() {
+    SetWinScreenUIVisibility(false);
+    SetMemoryUIVisibility(false);
+    setStartScreenUIVisibily(false);
+    SetSettingsScreenVisibility(true);
+    turtle1.clear();
   }
   
   private void MemoryKarteChecken(int KartenIndex) {
@@ -930,12 +976,19 @@ public class TurtleMemory extends Application {
     bStart.setLayoutX(303);
     bStart.setVisible(visible);
     lTurtleMemory.setLayoutY(220);
+    bSettings.setVisible(visible);
+  }
+  
+  public void SetSettingsScreenVisibility(boolean visible) {
+    comboBox1.setVisible(visible);
+    bZurueckzumHaubtmenue.setVisible(visible);
   }
   
   
   public void SwitchToStartScreen() {
     SetWinScreenUIVisibility(false);
     SetMemoryUIVisibility(false);
+    SetSettingsScreenVisibility(false);
     setStartScreenUIVisibily(true);
     turtle1.clear();
     BuchstabenZeichenen(';', -20,-180, 50, false);
@@ -946,10 +999,14 @@ public class TurtleMemory extends Application {
   
   public void StartGame() {
     setStartScreenUIVisibily(false);
+    SetSettingsScreenVisibility(false);
     SetMemoryUIVisibility(true);
     SetWinScreenUIVisibility(false);
+    GameMode = comboBox1.getValue();
     NewGame();
   }
+  
+
 
   public void button2_Action(Event evt) {
     // TODO hier Quelltext einfügen
@@ -1046,6 +1103,16 @@ public class TurtleMemory extends Application {
     // TODO hier Quelltext einfügen
     SwitchToStartScreen();
   } // end of bQuit_Action
+
+  public void bSettings_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    DisplaySettings();
+  } // end of bSettings_Action
+
+  public void bZurueckzumHaubtmenue_Action(Event evt) {
+    // TODO hier Quelltext einfügen
+    SwitchToStartScreen();
+  } // end of bZurueckzumHaubtmenue_Action
 
   // Ende Methoden
 } // end of class TurtleMemory
