@@ -55,7 +55,7 @@ public class TurtleMemory extends Application {
   private char[] Buchstaben = new char[16];
   private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F', 'G','H','I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   private String[] Tiere = new String[16];
-  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege"};
+  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege", "Otter"};
   private boolean[] BuchstabenBefüllt = new boolean[16];
   private int KartenAnzahlZähler = 0;
   private int score = 0;
@@ -764,6 +764,14 @@ public class TurtleMemory extends Application {
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-30, 1, 0, -20, 3, 4, -10, 2, 5, -20, 7, 6, -10, 8, 9, -20, 11, 10, -20, 13, 12, -20, 14, 16, -20, 17, 15, 20, 21, 22, 23, -30, 21, 24, 25, 27, 26, 27, 29, 28, 29, 30, 29, 31, -100, 32, 33, -100, 34, 35, -100, 37, 38, -100, 39, 40));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
+    
+  if (Tier == "Otter") {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (-0.17142858 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -114.0, (float) 114.0, (float) -69.0, (float) 75.0, (float) -74.79365, (float) -48.0, (float) -63.0, (float) -52.0, (float) 47.0, (float) 0.0, (float) 96.0, (float) -1.0, (float) 0.0, (float) -17.0, (float) 12.0, (float) -61.0, (float) -61.0, (float) 61.0, (float) 61.0, (float) 61.0, (float) 61.0, (float) -61.0, (float) -61.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 97.0, (float) -17.0, (float) -457.0, (float) 7.0, (float) 5.0, (float) -112.0, (float) -112.0, (float) 0.0, (float) -111.0, (float) -61.0, (float) -65.0, (float) -60.0, (float) -34.0, (float) -20.0, (float) -20.0, (float) 63.0, (float) 33.0, (float) 33.0, (float) 63.0, (float) 45.0, (float) 48.0, (float) 48.0, (float) 45.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-65, 1, 0, -10, 3, 2, -50, 4, 5, -25, 6, 7, -50, 8, 3, -25, 9, 10, 11, 12, 13, 12, 14, 12, -100, 15, 16, -100, 17, 18, -100, 19, 20, -100, 21, 22));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 125, XCoordinates, YCoordinates, Paths);
+  } // end of if
   }
   
 
