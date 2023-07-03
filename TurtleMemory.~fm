@@ -1,9 +1,9 @@
 object TurtleMemory: TFXGuiForm
-  Left = 1234
-  Top = 423
+  Left = 1704
+  Top = 132
   BorderIcons = [biSystemMenu]
   Caption = 'TurtleMemory'
-  ClientHeight = 923
+  ClientHeight = 1021
   ClientWidth = 829
   Color = clBtnFace
   ParentFont = True
@@ -713,7 +713,7 @@ object TurtleMemory: TFXGuiForm
   object numberField2: TFXNumberField
     Tag = 103
     Left = 200
-    Top = 856
+    Top = 880
     Width = 67
     Height = 33
     Cursor = crIBeam
@@ -726,7 +726,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clWhite
     LayoutX = 200
-    LayoutY = 856
+    LayoutY = 880
     Disable = False
     Cache = False
     dragOver = ''
@@ -742,7 +742,7 @@ object TurtleMemory: TFXGuiForm
   object numberField3: TFXNumberField
     Tag = 103
     Left = 566
-    Top = 852
+    Top = 876
     Width = 67
     Height = 33
     Cursor = crIBeam
@@ -755,7 +755,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clWhite
     LayoutX = 566
-    LayoutY = 852
+    LayoutY = 876
     Disable = False
     Cache = False
     dragOver = ''
@@ -907,7 +907,7 @@ object TurtleMemory: TFXGuiForm
   object bQuit: TFXButton
     Tag = 105
     Left = 362
-    Top = 842
+    Top = 866
     Width = 115
     Height = 41
     Hint = 'button18'
@@ -919,7 +919,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clBtnFace
     LayoutX = 362
-    LayoutY = 842
+    LayoutY = 866
     Disable = False
     Cache = False
     dragOver = ''
@@ -943,7 +943,7 @@ object TurtleMemory: TFXGuiForm
   object lCurrentturns: TFXLabel
     Tag = 101
     Left = 200
-    Top = 896
+    Top = 920
     Width = 70
     Height = 20
     Hint = 'label2'
@@ -955,7 +955,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clBtnFace
     LayoutX = 200
-    LayoutY = 896
+    LayoutY = 920
     Disable = False
     Cache = False
     dragOver = ''
@@ -976,7 +976,7 @@ object TurtleMemory: TFXGuiForm
   object lHighscore: TFXLabel
     Tag = 101
     Left = 568
-    Top = 890
+    Top = 914
     Width = 62
     Height = 20
     Hint = 'label3'
@@ -988,7 +988,7 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clBtnFace
     LayoutX = 568
-    LayoutY = 890
+    LayoutY = 914
     Disable = False
     Cache = False
     dragOver = ''
@@ -1044,8 +1044,8 @@ object TurtleMemory: TFXGuiForm
   end
   object comboBox1: TFXComboBox
     Tag = 110
-    Left = 363
-    Top = 378
+    Left = 355
+    Top = 346
     Width = 120
     Height = 27
     Hint = 'comboBox1'
@@ -1056,8 +1056,8 @@ object TurtleMemory: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = 16053492
-    LayoutX = 363
-    LayoutY = 378
+    LayoutX = 355
+    LayoutY = 346
     Disable = False
     Cache = False
     dragOver = ''
@@ -1077,8 +1077,8 @@ object TurtleMemory: TFXGuiForm
   object bZurueckzumHaubtmenue: TFXButton
     Tag = 105
     Left = 302
-    Top = 444
-    Width = 203
+    Top = 532
+    Width = 219
     Height = 65
     Hint = 'button1'
     Font.Charset = DEFAULT_CHARSET
@@ -1089,12 +1089,12 @@ object TurtleMemory: TFXGuiForm
     Foreground = clBlack
     Background = clBtnFace
     LayoutX = 302
-    LayoutY = 444
+    LayoutY = 532
     Disable = False
     Cache = False
     dragOver = ''
     PrefHeight = 65
-    PrefWidth = 203
+    PrefWidth = 219
     SnapToPixel = False
     Alignment = CENTER
     ContentDisplay = _CD_LEFT
@@ -1109,5 +1109,239 @@ object TurtleMemory: TFXGuiForm
     action = 'bZurueckzumHaubtmenue_Action'
     CancelButton = False
     DefaultButton = False
+  end
+  object lGameMode: TFXLabel
+    Tag = 101
+    Left = 322
+    Top = 275
+    Width = 182
+    Height = 60
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -30
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 322
+    LayoutY = 275
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 60
+    PrefWidth = 182
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Game Mode'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object lPlayerMode: TFXLabel
+    Tag = 101
+    Left = 330
+    Top = 376
+    Width = 206
+    Height = 44
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -30
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 330
+    LayoutY = 376
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 44
+    PrefWidth = 206
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Player Mode'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object comboBox2: TFXComboBox
+    Tag = 110
+    Left = 251
+    Top = 444
+    Width = 120
+    Height = 27
+    Hint = 'comboBox2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = 16053492
+    LayoutX = 251
+    LayoutY = 444
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 27
+    PrefWidth = 120
+    SnapToPixel = False
+    Editable = False
+    PromptText = ''
+    Value = 'Singleplayer'
+    action = ''
+    hidden = 'comboBox2_Hidden'
+    showing = ''
+    VisibleRowCount = 10
+    Items.Strings = (
+      'Singleplayer'
+      'Multiplayer')
+  end
+  object comboBox3: TFXComboBox
+    Tag = 110
+    Left = 446
+    Top = 447
+    Width = 120
+    Height = 27
+    Hint = 'comboBox3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = 16053492
+    LayoutX = 446
+    LayoutY = 447
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 27
+    PrefWidth = 120
+    SnapToPixel = False
+    Editable = False
+    PromptText = ''
+    Value = '2 Players'
+    action = ''
+    showing = ''
+    VisibleRowCount = 10
+    Items.Strings = (
+      '2 Players'
+      '3 Players'
+      '4 Players'
+      '5 Players'
+      '6 Players')
+  end
+  object lItsPlayer1sturn: TFXLabel
+    Tag = 101
+    Left = 324
+    Top = 16
+    Width = 222
+    Height = 36
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 324
+    LayoutY = 16
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 36
+    PrefWidth = 222
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'It'#39's Player 1'#39's turn'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object listView1: TFXListView
+    Tag = 109
+    Left = 661
+    Top = 859
+    Width = 150
+    Height = 148
+    Hint = 'listView1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = 13158600
+    LayoutX = 661
+    LayoutY = 859
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 148
+    PrefWidth = 150
+    SnapToPixel = False
+    Editable = False
+    FixedCellSize = -1
+    Items.Strings = (
+      'Hi'
+      'Hello'
+      'fbe'
+      'efbe'
+      #252'4prohgt'
+      'ef')
+    Orientation = VERTICAL
+    SelectionMode = MULTIPLE
+  end
+  object lLeaderboard: TFXLabel
+    Tag = 101
+    Left = 663
+    Top = 821
+    Width = 134
+    Height = 28
+    Hint = 'label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 663
+    LayoutY = 821
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 28
+    PrefWidth = 134
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Leaderboard: '
+    TextAlignment = _TA_LEFT
+    WrapText = False
   end
 end

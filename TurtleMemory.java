@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.collections.*;
+import javafx.scene.input.*;
 
 /**
  *
@@ -46,6 +47,13 @@ public class TurtleMemory extends Application {
   private Button button15 = new Button();
   private Button button16 = new Button();
   private Button button17 = new Button();
+  private int pointsPlayer = 0;
+  private int lastPointsPlayer;
+  private int curentPlayer = 1;
+  private int totalNumberOfPlayers = 1;
+  private int[] SortedLeaderboard = new int[2];
+  private boolean lastMoveWasPoint = false;
+  private int numberOButtonPressed;
   private String GameMode = "Tiere";
   private List<Integer> AleadySolvedButtonIndexes = new ArrayList<>();
   private boolean[] StellenAufgedeckt = new boolean[16]; 
@@ -62,6 +70,7 @@ public class TurtleMemory extends Application {
   private String LetzteKarte = "*";
   private int Turns = 0;
   private int LowestTurns = 0;
+  int[] AllPlayerScoreIndex = {0,0};
   private Button[] MemoryButtons = {button2, button3, button4, button5, button6,button7,button8, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17};
   
   private Label lTurtleMemory = new Label();
@@ -77,14 +86,27 @@ public class TurtleMemory extends Application {
   private Label lHighscore = new Label();
   private Button bSettings = new Button();
   private ComboBox<String> comboBox1 = new ComboBox<>();
-      private ObservableList<String> comboBox1ObservableList = 
-              FXCollections.observableArrayList();
+  private ObservableList<String> comboBox1ObservableList = 
+  FXCollections.observableArrayList();
   private Button bZurueckzumHaubtmenue = new Button();
+  private Label lGameMode = new Label();
+  private Label lPlayerMode = new Label();
+  private ComboBox<String> comboBox2 = new ComboBox<>();
+  private ObservableList<String> comboBox2ObservableList = 
+  FXCollections.observableArrayList();
+  private ComboBox<String> comboBox3 = new ComboBox<>();
+  private ObservableList<String> comboBox3ObservableList = 
+  FXCollections.observableArrayList();
+  private Label lItsPlayer1sturn = new Label();
+  private ListView<String> listView1 = new ListView<>();
+  private ObservableList<String> listView1ObservableList = 
+  FXCollections.observableArrayList();
+  private Label lLeaderboard = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 829, 924);
+    Scene scene = new Scene(root, 829, 1022);
     // Anfang Komponenten
     
     turtle1.setLayoutX(38);
@@ -241,7 +263,7 @@ public class TurtleMemory extends Application {
     bStart.setFont(Font.font("Dialog", 50));
     root.getChildren().add(bStart);
     numberField2.setLayoutX(200);
-    numberField2.setLayoutY(856);
+    numberField2.setLayoutY(880);
     numberField2.setPrefHeight(33);
     numberField2.setPrefWidth(67);
     numberField2.setEditable(false);
@@ -251,7 +273,7 @@ public class TurtleMemory extends Application {
     numberField2.setAlignment(Pos.CENTER);
     root.getChildren().add(numberField2);
     numberField3.setLayoutX(566);
-    numberField3.setLayoutY(852);
+    numberField3.setLayoutY(876);
     numberField3.setPrefHeight(33);
     numberField3.setPrefWidth(67);
     numberField3.setMouseTransparent(true);
@@ -294,7 +316,7 @@ public class TurtleMemory extends Application {
     l10.setFont(Font.font("Dialog", 35));
     root.getChildren().add(l10);
     bQuit.setLayoutX(362);
-    bQuit.setLayoutY(842);
+    bQuit.setLayoutY(866);
     bQuit.setPrefHeight(41);
     bQuit.setPrefWidth(115);
     bQuit.setOnAction(
@@ -304,14 +326,14 @@ public class TurtleMemory extends Application {
     bQuit.setFont(Font.font("Dialog", 25));
     root.getChildren().add(bQuit);
     lCurrentturns.setLayoutX(200);
-    lCurrentturns.setLayoutY(896);
+    lCurrentturns.setLayoutY(920);
     lCurrentturns.setPrefHeight(20);
     lCurrentturns.setPrefWidth(70);
     lCurrentturns.setText("current turns");
     lCurrentturns.setContentDisplay(ContentDisplay.CENTER);
     root.getChildren().add(lCurrentturns);
     lHighscore.setLayoutX(568);
-    lHighscore.setLayoutY(890);
+    lHighscore.setLayoutY(914);
     lHighscore.setPrefHeight(20);
     lHighscore.setPrefWidth(62);
     lHighscore.setText("high score");
@@ -322,30 +344,96 @@ public class TurtleMemory extends Application {
     bSettings.setPrefHeight(89);
     bSettings.setPrefWidth(99);
     bSettings.setOnAction(
-      (event) -> {bSettings_Action(event);} 
+    (event) -> {bSettings_Action(event);} 
     );
     bSettings.setText("Settings");
     bSettings.setFont(Font.font("Dialog", 18));
     root.getChildren().add(bSettings);
-    comboBox1.setLayoutX(363);
-    comboBox1.setLayoutY(378);
+    comboBox1.setLayoutX(355);
+    comboBox1.setLayoutY(346);
     comboBox1.setPrefHeight(27);
     comboBox1.setPrefWidth(120);
     comboBox1.setItems(comboBox1ObservableList);
+    comboBox1.setValue("Buchstaben");
     comboBox1ObservableList.add("Buchstaben");
     comboBox1ObservableList.add("Tiere");
-    comboBox1.setValue("Buchstaben");
     root.getChildren().add(comboBox1);
     bZurueckzumHaubtmenue.setLayoutX(302);
-    bZurueckzumHaubtmenue.setLayoutY(444);
+    bZurueckzumHaubtmenue.setLayoutY(532);
     bZurueckzumHaubtmenue.setPrefHeight(65);
-    bZurueckzumHaubtmenue.setPrefWidth(203);
+    bZurueckzumHaubtmenue.setPrefWidth(219);
     bZurueckzumHaubtmenue.setOnAction(
-      (event) -> {bZurueckzumHaubtmenue_Action(event);} 
+    (event) -> {bZurueckzumHaubtmenue_Action(event);} 
     );
     bZurueckzumHaubtmenue.setText("Zurück zum Haubtmenü");
     bZurueckzumHaubtmenue.setFont(Font.font("Dialog", 18));
     root.getChildren().add(bZurueckzumHaubtmenue);
+    lGameMode.setLayoutX(322);
+    lGameMode.setLayoutY(275);
+    lGameMode.setPrefHeight(60);
+    lGameMode.setPrefWidth(182);
+    lGameMode.setText("Game Mode");
+    lGameMode.setFont(Font.font("Dialog", FontWeight.BOLD, 30));
+    root.getChildren().add(lGameMode);
+    lPlayerMode.setLayoutX(330);
+    lPlayerMode.setLayoutY(376);
+    lPlayerMode.setPrefHeight(44);
+    lPlayerMode.setPrefWidth(206);
+    lPlayerMode.setText("Player Mode");
+    lPlayerMode.setFont(Font.font("Dialog", FontWeight.BOLD, 30));
+    root.getChildren().add(lPlayerMode);
+    comboBox2.setLayoutX(251);
+    comboBox2.setLayoutY(444);
+    comboBox2.setPrefHeight(27);
+    comboBox2.setPrefWidth(120);
+    comboBox2.setItems(comboBox2ObservableList);
+    comboBox2ObservableList.add("Singleplayer");
+    comboBox2ObservableList.add("Multiplayer");
+    comboBox2.setValue("Singleplayer");
+    comboBox2.setOnHidden(
+    (event) -> {comboBox2_Hidden(event);} 
+    );
+    root.getChildren().add(comboBox2);
+    comboBox3.setLayoutX(446);
+    comboBox3.setLayoutY(444);
+    comboBox3.setPrefHeight(27);
+    comboBox3.setPrefWidth(120);
+    comboBox3.setItems(comboBox3ObservableList);
+    comboBox3.setValue("2 Players");
+    comboBox3ObservableList.add("2 Players");
+    comboBox3ObservableList.add("3 Players");
+    comboBox3ObservableList.add("4 Players");
+    comboBox3ObservableList.add("5 Players");
+    comboBox3ObservableList.add("6 Players");
+    root.getChildren().add(comboBox3);
+    lItsPlayer1sturn.setLayoutX(324);
+    lItsPlayer1sturn.setLayoutY(16);
+    lItsPlayer1sturn.setPrefHeight(36);
+    lItsPlayer1sturn.setPrefWidth(222);
+    lItsPlayer1sturn.setText("It's Player 1's turn");
+    lItsPlayer1sturn.setFont(Font.font("Dialog", 20));
+    root.getChildren().add(lItsPlayer1sturn);
+    listView1.setLayoutX(661);
+    listView1.setLayoutY(859);
+    listView1.setPrefHeight(148);
+    listView1.setPrefWidth(150);
+    listView1.setItems(listView1ObservableList);
+    listView1ObservableList.add("Hi");
+    listView1ObservableList.add("Hello");
+    listView1ObservableList.add("fbe");
+    listView1ObservableList.add("efbe");
+    listView1ObservableList.add("ü4prohgt");
+    listView1ObservableList.add("ef");
+    listView1.setEditable(false);
+    listView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    root.getChildren().add(listView1);
+    lLeaderboard.setLayoutX(663);
+    lLeaderboard.setLayoutY(821);
+    lLeaderboard.setPrefHeight(28);
+    lLeaderboard.setPrefWidth(134);
+    lLeaderboard.setText("Leaderboard: ");
+    lLeaderboard.setFont(Font.font("Dialog", FontWeight.BOLD, 20));
+    root.getChildren().add(lLeaderboard);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -426,6 +514,34 @@ public class TurtleMemory extends Application {
     Turns = 0;
     numberField2.setInt(Turns);
     numberField3.setInt(LowestTurns);
+    curentPlayer = 1;
+    lastPointsPlayer = 1;
+    pointsPlayer = 1;
+    lItsPlayer1sturn.setText("It's Player 1's turn");
+    numberOButtonPressed = 0;
+    if (comboBox2.getValue() == "Multiplayer") {
+      if (comboBox3.getValue() == "2 Players") {
+        totalNumberOfPlayers = 2;
+      } // end of if
+      if (comboBox3.getValue() == "3 Players") {
+        totalNumberOfPlayers = 3;
+      } // end of if
+      if (comboBox3.getValue() == "4 Players") {
+        totalNumberOfPlayers = 4;
+      } // end of if
+      if (comboBox3.getValue() == "5 Players") {
+        totalNumberOfPlayers = 5;
+      } // end of if
+      if (comboBox3.getValue() == "6 Players") {
+        totalNumberOfPlayers = 6;
+      } // end of if
+      AllPlayerScoreIndex = new int[totalNumberOfPlayers];
+      SortedLeaderboard = new int[totalNumberOfPlayers];
+      for (int i = 0; i < AllPlayerScoreIndex.length; i++) {
+        AllPlayerScoreIndex[i] = 0;
+      }
+      FillLeaderboard();
+    } // end of if
   }
   
   private void MemoryMischen() {
@@ -765,13 +881,13 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
     
-  if (Tier == "Otter") {
+    if (Tier == "Otter") {
       if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (-0.17142858 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -114.0, (float) 114.0, (float) -69.0, (float) 75.0, (float) -74.79365, (float) -48.0, (float) -63.0, (float) -52.0, (float) 47.0, (float) 0.0, (float) 96.0, (float) -1.0, (float) 0.0, (float) -17.0, (float) 12.0, (float) -61.0, (float) -61.0, (float) 61.0, (float) 61.0, (float) 61.0, (float) 61.0, (float) -61.0, (float) -61.0));
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 97.0, (float) -17.0, (float) -457.0, (float) 7.0, (float) 5.0, (float) -112.0, (float) -112.0, (float) 0.0, (float) -111.0, (float) -61.0, (float) -65.0, (float) -60.0, (float) -34.0, (float) -20.0, (float) -20.0, (float) 63.0, (float) 33.0, (float) 33.0, (float) 63.0, (float) 45.0, (float) 48.0, (float) 48.0, (float) 45.0));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-65, 1, 0, -10, 3, 2, -50, 4, 5, -25, 6, 7, -50, 8, 3, -25, 9, 10, 11, 12, 13, 12, 14, 12, -100, 15, 16, -100, 17, 18, -100, 19, 20, -100, 21, 22));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 125, XCoordinates, YCoordinates, Paths);
-  } // end of if
+    } // end of if
   }
   
 
@@ -844,11 +960,47 @@ public class TurtleMemory extends Application {
     if (StellenAufgedeckt[ButtonIndex] == false) {
       Turns++;
       numberField2.setInt(Turns);
+      if (comboBox2.getValue() == "Multiplayer") {
+        numberOButtonPressed++;
+        if (numberOButtonPressed == 2) {
+          numberOButtonPressed = 0;
+          lastPointsPlayer = pointsPlayer;
+          pointsPlayer = curentPlayer;
+          curentPlayer++;
+          if (curentPlayer > totalNumberOfPlayers) {
+            curentPlayer = 1;
+          } // end of if
+          lItsPlayer1sturn.setText("It's Player " + curentPlayer + "'s turn");
+        } // end of if
+      } // end of if 
     } // end of if
     if (! AleadySolvedButtonIndexes.contains(ButtonIndex) && LastCardPositionIndex != ButtonIndex + 1) {
       MemoryKarteChecken(ButtonIndex);
+      if (lastMoveWasPoint) {
+        lastMoveWasPoint = false;
+        curentPlayer = pointsPlayer;
+        pointsPlayer = lastPointsPlayer;
+        lItsPlayer1sturn.setText("It's Player " + curentPlayer + "'s turn");
+      } // end of if
+      
       RedrawService(ButtonIndex + 1);
-      KartenelementEnfügen(ButtonIndex);
+      KartenelementEnfügen(ButtonIndex);  
+    } // end of if
+    if (StellenAufgedeckt[ButtonIndex] == false) {
+      Turns++;
+      numberField2.setInt(Turns);
+      if (comboBox2.getValue() == "Multiplayer") {
+        numberOButtonPressed++;
+        if (numberOButtonPressed == 2) {
+          numberOButtonPressed = 0;
+          pointsPlayer = curentPlayer;
+          curentPlayer++;
+          if (curentPlayer > totalNumberOfPlayers) {
+            curentPlayer = 1;
+          } // end of if
+          lItsPlayer1sturn.setText("It's Player " + curentPlayer + "'s turn");
+        } // end of if
+      } // end of if 
     } // end of if
     if (score > 7) {
       if (LowestTurns == 0) {
@@ -856,7 +1008,6 @@ public class TurtleMemory extends Application {
       } else {
         if (Turns < LowestTurns) {
           LowestTurns = Turns;
-          System.out.println("New High Score : " + Turns);
         } // end of if
       } // end of if-else
       numberField3.setInt(LowestTurns);
@@ -925,6 +1076,12 @@ public class TurtleMemory extends Application {
     setStartScreenUIVisibily(false);
     SetSettingsScreenVisibility(true);
     turtle1.clear();
+    nEckZeichnen(-200,-200,4,1500,0,100);
+    nEckZeichnen(-200,-80,2,750,0,100);
+    BuchstabenZeichenen(';',-30,-270,40,false);
+    if (comboBox2.getValue() == "Singleplayer") {
+      comboBox3.setVisible(false);
+    }
   }
   
   private void MemoryKarteChecken(int KartenIndex) {
@@ -944,6 +1101,11 @@ public class TurtleMemory extends Application {
     } // end of if
     if (KartenAnzahlZähler == 2) {
       if (LetzteKarte.equals(Karte)) {
+        if (comboBox2.getValue() == "Multiplayer") {
+          AllPlayerScoreIndex[pointsPlayer - 1]++;
+          lastMoveWasPoint = true;
+          FillLeaderboard();
+        } // end of if
         score++;
         AleadySolvedButtonIndexes.add(KartenIndex);
         AleadySolvedButtonIndexes.add(LastCardPositionIndex - 1);
@@ -965,8 +1127,14 @@ public class TurtleMemory extends Application {
     for (int i = 0; i < MemoryButtons.length; i++) {
       MemoryButtons[i].setVisible(visisble);
     }
-    numberField2.setVisible(visisble);
-    lCurrentturns.setVisible(visisble);
+    if (visisble == false || comboBox2.getValue() == "Singleplayer") {
+      numberField2.setVisible(visisble);
+      lCurrentturns.setVisible(visisble);
+    } // end of if
+    if (comboBox2.getValue() == "Multiplayer") {
+      numberField2.setVisible(false);
+      lCurrentturns.setVisible(false);
+    } // end of if
     if (LowestTurns > 0) {
       numberField3.setVisible(visisble);
       lHighscore.setVisible(visisble);    
@@ -976,6 +1144,11 @@ public class TurtleMemory extends Application {
       lHighscore.setVisible(false);
     } // end of if-else
     bQuit.setVisible(visisble);
+    if (visisble == false || comboBox2.getValue() == "Multiplayer") {
+      lItsPlayer1sturn.setVisible(visisble);
+      listView1.setVisible(visisble);
+      lLeaderboard.setVisible(visisble);
+    } // end of if
   }
   
   public void setStartScreenUIVisibily(boolean visible) {
@@ -990,9 +1163,49 @@ public class TurtleMemory extends Application {
   public void SetSettingsScreenVisibility(boolean visible) {
     comboBox1.setVisible(visible);
     bZurueckzumHaubtmenue.setVisible(visible);
+    lGameMode.setVisible(visible);
+    lPlayerMode.setVisible(visible);
+    comboBox2.setVisible(visible);
+    comboBox3.setVisible(visible);
   }
   
-  
+  public String[] MaximumSortLEaderboard() {
+    int TauschZwischenspeicher = 0;
+    String[] SortedNames = new String[SortedLeaderboard.length];
+    for (int i = 0; i < SortedNames.length; i++) {
+      SortedLeaderboard[i] = AllPlayerScoreIndex[i];
+      SortedNames[i] = ("Player " + (i + 1));
+    }
+    int n = SortedLeaderboard.length;
+    // Loop through the array n-1 times
+    for (int i = 0; i < n-1; i++) {
+      // Loop through the array from 0 to n-i-1
+      for (int j = 0; j < n-i-1; j++) {
+        // Compare the current element with the next element
+        if (SortedLeaderboard[j] > SortedLeaderboard[j+1]) {
+          // Swap them if the current element is larger
+          int temp = SortedLeaderboard[j];
+          String nameTemp = SortedNames[j];
+          SortedLeaderboard[j] = SortedLeaderboard[j+1];
+          SortedNames[j] = SortedNames[j + 1];
+          SortedLeaderboard[j+1] = temp;
+          SortedNames[j + 1] = nameTemp;
+        }
+      }
+    }
+    // Loop through the first half of the array
+    for (int i = 0; i < n/2; i++) {
+      // Swap the ith element with the n-i-1th element
+      int temp = SortedLeaderboard[i];
+      String nameTemp = SortedNames[i];
+      SortedLeaderboard[i] = SortedLeaderboard[n-i-1];
+      SortedNames[i] = SortedNames[n-i-1];
+      SortedLeaderboard[n-i-1] = temp;
+      SortedNames[n-i-1] = nameTemp;
+    }
+    return SortedNames;
+  }  
+    
   public void SwitchToStartScreen() {
     SetWinScreenUIVisibility(false);
     SetMemoryUIVisibility(false);
@@ -1004,7 +1217,7 @@ public class TurtleMemory extends Application {
     nEckZeichnen(-250,-250,4,2000,0,(float)100);
     nEckZeichnen(-250,50,2,1000,0,(float)100);
   }
-  
+      
   public void StartGame() {
     setStartScreenUIVisibily(false);
     SetSettingsScreenVisibility(false);
@@ -1013,115 +1226,136 @@ public class TurtleMemory extends Application {
     GameMode = comboBox1.getValue();
     NewGame();
   }
-  
-
-
+        
+  public void FillLeaderboard() {
+    String[] SortedNames = MaximumSortLEaderboard(); 
+    for (int i = 0; i < 6; i++) {
+      if (i < totalNumberOfPlayers) {
+        listView1.getItems().set(i, (SortedNames[i] + ": " + SortedLeaderboard[i]));
+      } // end of if
+      else {
+        listView1.getItems().set(i, "");
+      } // end of if-else
+    }
+  }
+          
+          
+        
   public void button2_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(0);
     
   } // end of button2_Action
-
+      
   public void button3_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(1);
   } // end of button3_Action
-
+  
   public void button4_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(2);
   } // end of button4_Action
-
+    
   public void button5_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(3);
   } // end of button5_Action
-
+  
   public void button6_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(7);
   } // end of button6_Action
-
+    
   public void button7_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(6);
   } // end of button7_Action
-
+      
   public void button8_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(5);
   } // end of button8_Action
-
+      
   public void button9_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(4);
   } // end of button9_Action
-
+  
   public void button10_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(15);
   } // end of button10_Action
-
+    
   public void button11_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(11);
   } // end of button11_Action
-
+  
   public void button12_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(10);
   } // end of button12_Action
-
+  
   public void button13_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(14);
   } // end of button13_Action
-
+  
   public void button14_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(9);
   } // end of button14_Action
-
+  
   public void button15_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(13);
   } // end of button15_Action                                           
-
+  
   public void button16_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(8);
   } // end of button16_Action
-
+  
   public void button17_Action(Event evt) {
     // TODO hier Quelltext einfügen
     ButtonService(12);
   } // end of button17_Action
-
+  
   public void bStart_Action(Event evt) {
     // TODO hier Quelltext einfügen
     StartGame();
   } // end of bStart_Action
-
+  
   public void bStartScreen_Action(Event evt) {
     // TODO hier Quelltext einfügen
     SwitchToStartScreen();
   } // end of bStartScreen_Action
-
+  
   public void bQuit_Action(Event evt) {
     // TODO hier Quelltext einfügen
     SwitchToStartScreen();
   } // end of bQuit_Action
-
+  
   public void bSettings_Action(Event evt) {
     // TODO hier Quelltext einfügen
     DisplaySettings();
   } // end of bSettings_Action
-
+  
   public void bZurueckzumHaubtmenue_Action(Event evt) {
     // TODO hier Quelltext einfügen
     SwitchToStartScreen();
   } // end of bZurueckzumHaubtmenue_Action
-
+  
+  public void comboBox2_Hidden(Event evt) {
+    // TODO hier Quelltext einfügen
+    if (comboBox2.getValue() == "Multiplayer") {
+      comboBox3.setVisible(true);
+    } else {
+      comboBox3.setVisible(false);
+    } // end of if-else
+  } // end of comboBox2_Hidden
+    
   // Ende Methoden
 } // end of class TurtleMemory
-
+    
