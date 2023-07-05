@@ -1612,7 +1612,7 @@ object TurtleMemory: TFXGuiForm
     Tag = 106
     Left = 281
     Top = 958
-    Width = 16
+    Width = 29
     Height = 17
     Hint = 'checkBox1'
     Font.Charset = DEFAULT_CHARSET
@@ -1628,7 +1628,7 @@ object TurtleMemory: TFXGuiForm
     Cache = False
     dragOver = ''
     PrefHeight = 17
-    PrefWidth = 16
+    PrefWidth = 29
     SnapToPixel = False
     Alignment = CENTER_LEFT
     ContentDisplay = _CD_LEFT

@@ -63,7 +63,7 @@ public class TurtleMemory extends Application {
   private char[] Buchstaben = new char[16];
   private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F', 'G','H','I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   private String[] Tiere = new String[16];
-  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege", "Otter"};
+  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege", "Otter", "Giraffe"};
   private boolean[] BuchstabenBefüllt = new boolean[16];
   private int KartenAnzahlZähler = 0;
   private int score = 0;
@@ -972,6 +972,14 @@ public class TurtleMemory extends Application {
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 97.0, (float) -17.0, (float) -457.0, (float) 7.0, (float) 5.0, (float) -112.0, (float) -112.0, (float) 0.0, (float) -111.0, (float) -61.0, (float) -65.0, (float) -60.0, (float) -34.0, (float) -20.0, (float) -20.0, (float) 63.0, (float) 33.0, (float) 33.0, (float) 63.0, (float) 45.0, (float) 48.0, (float) 48.0, (float) 45.0));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-65, 1, 0, -10, 3, 2, -50, 4, 5, -25, 6, 7, -50, 8, 3, -25, 9, 10, 11, 12, 13, 12, 14, 12, -100, 15, 16, -100, 17, 18, -100, 19, 20, -100, 21, 22));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 125, XCoordinates, YCoordinates, Paths);
+    } // end of if
+    
+    if (Tier == "Giraffe") {
+      if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (-0.1428 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -31.199999, (float) 28.079998, (float) 27.039999, (float) 0.0, (float) 26.0, (float) -29.64, (float) -3.6399999, (float) -28.599998, (float) -37.96, (float) 37.96, (float) -30.679998, (float) 26.0, (float) 14.559999, (float) -48.879997, (float) -21.32, (float) -65.52, (float) 33.8, (float) 16.119999, (float) 55.64, (float) 36.92, (float) -11.959999, (float) -4.16, (float) -4.16, (float) -11.959999, (float) 4.16, (float) 11.959999, (float) 11.959999, (float) 4.16, (float) 21.84, (float) 21.84, (float) -21.84, (float) -21.84, (float) -21.84, (float) -21.84, (float) 21.84, (float) 21.84, (float) -14.559999, (float) -9.36, (float) -9.36, (float) -14.559999, (float) 14.559999, (float) 9.36, (float) 9.36, (float) 14.559999));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -69.159996, (float) -28.599998, (float) -70.72, (float) -54.6, (float) -53.039997, (float) -91.0, (float) -72.28, (float) -50.96, (float) 27.039999, (float) 27.039999, (float) -54.6, (float) -54.6, (float) 68.64, (float) 67.6, (float) 58.239998, (float) 15.599999, (float) 43.68, (float) 107.119995, (float) 63.96, (float) -6.7599998, (float) 62.399998, (float) 63.96, (float) 85.799995, (float) 85.799995, (float) 63.96, (float) 62.399998, (float) 85.799995, (float) 85.799995, (float) 34.84, (float) 20.8, (float) 20.8, (float) 34.84, (float) 27.039999, (float) 28.079998, (float) 27.039999, (float) 28.079998, (float) -54.6, (float) -54.6, (float) -68.119995, (float) -68.119995, (float) -68.119995, (float) -68.119995, (float) -54.6, (float) -54.6));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-30, 0, 1, -20, 2, 3, -30, 4, 5, -20, 7, 6, 8, 10, 9, 11, -50, 9, 8, -15, 13, 12, -15, 14, 15, -15, 16, 17, -15, 18, 19, 20, 23, 21, 22, -50, 22, 23, -50, 26, 27, 24, 27, 25, 26, -100, 28, 29, -100, 30, 31, -100, 32, 33, -100, 34, 35, -50, 37, 36, -50, 39, 38, 39, 36, 38, 37, -50, 41, 40, 41, 42, -50, 43, 42, 43, 40));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
   }
   
