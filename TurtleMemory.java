@@ -102,6 +102,17 @@ public class TurtleMemory extends Application {
   private ObservableList<String> listView1ObservableList = 
   FXCollections.observableArrayList();
   private Label lLeaderboard = new Label();
+  private Label lPodium = new Label();
+  private Label lLeaderboard1 = new Label();
+  private Label lPlayer1 = new Label();
+  private Label lPlayer2 = new Label();
+  private Label lPlayer3 = new Label();
+  private String[] LeaderboardNames;
+  private Label lScore1 = new Label();
+  private Label lScore2 = new Label();
+  private Label lScore3 = new Label();
+  private CheckBox checkBox1 = new CheckBox();
+  private Label lEnablerealtimedrawing = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -434,6 +445,74 @@ public class TurtleMemory extends Application {
     lLeaderboard.setText("Leaderboard: ");
     lLeaderboard.setFont(Font.font("Dialog", FontWeight.BOLD, 20));
     root.getChildren().add(lLeaderboard);
+    lPodium.setLayoutX(261);
+    lPodium.setLayoutY(197);
+    lPodium.setPrefHeight(44);
+    lPodium.setPrefWidth(118);
+    lPodium.setText("Podium");
+    lPodium.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(lPodium);
+    lLeaderboard1.setLayoutX(500);
+    lLeaderboard1.setLayoutY(196);
+    lLeaderboard1.setPrefHeight(44);
+    lLeaderboard1.setPrefWidth(182);
+    lLeaderboard1.setText("Leaderboard");
+    lLeaderboard1.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(lLeaderboard1);
+    lPlayer1.setLayoutX(286);
+    lPlayer1.setLayoutY(268);
+    lPlayer1.setPrefHeight(28);
+    lPlayer1.setPrefWidth(110);
+    lPlayer1.setText("Player 1");
+    lPlayer1.setFont(Font.font("Dialog", 18));
+    root.getChildren().add(lPlayer1);
+    lPlayer2.setLayoutX(190);
+    lPlayer2.setLayoutY(316);
+    lPlayer2.setPrefHeight(28);
+    lPlayer2.setPrefWidth(110);
+    lPlayer2.setText("Player 2");
+    lPlayer2.setFont(Font.font("Dialog", 18));
+    root.getChildren().add(lPlayer2);
+    lPlayer3.setLayoutX(376);
+    lPlayer3.setLayoutY(336);
+    lPlayer3.setPrefHeight(28);
+    lPlayer3.setPrefWidth(110);
+    lPlayer3.setText("Player 3");
+    lPlayer3.setFont(Font.font("Dialog", 18));
+    root.getChildren().add(lPlayer3);
+    lScore1.setLayoutX(304);
+    lScore1.setLayoutY(375);
+    lScore1.setPrefHeight(36);
+    lScore1.setPrefWidth(46);
+    lScore1.setText("0");
+    lScore1.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(lScore1);
+    lScore2.setLayoutX(224);
+    lScore2.setLayoutY(375);
+    lScore2.setPrefHeight(36);
+    lScore2.setPrefWidth(46);
+    lScore2.setText("0");
+    lScore2.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(lScore2);
+    lScore3.setLayoutX(392);
+    lScore3.setLayoutY(376);
+    lScore3.setPrefHeight(36);
+    lScore3.setPrefWidth(54);
+    lScore3.setText("0");
+    lScore3.setFont(Font.font("Dialog", 30));
+    root.getChildren().add(lScore3);
+    checkBox1.setLayoutX(281);
+    checkBox1.setLayoutY(958);
+    checkBox1.setPrefHeight(17);
+    checkBox1.setPrefWidth(16);
+    checkBox1.setText("");
+    root.getChildren().add(checkBox1);
+    lEnablerealtimedrawing.setLayoutX(314);
+    lEnablerealtimedrawing.setLayoutY(956);
+    lEnablerealtimedrawing.setPrefHeight(20);
+    lEnablerealtimedrawing.setPrefWidth(230);
+    lEnablerealtimedrawing.setText("Enable realtime drawing (experimental!)");
+    root.getChildren().add(lEnablerealtimedrawing);
     // Ende Komponenten
     
     button2.setStyle("-fx-background-color: transparent;");
@@ -469,6 +548,7 @@ public class TurtleMemory extends Application {
   } // end of main
   
   public void SpielfeldZeichnen() {
+    turtle1.setAnimated(false);
     turtle1.moveto(-185, -370);
     turtle1.turnto(0);
     HalbesSpielfeldZeichnen();
@@ -505,6 +585,7 @@ public class TurtleMemory extends Application {
   }
   public void NewGame() {
     score = 0;
+    turtle1.setAnimated(false);
     LastCardPositionIndex = 0;
     MemoryMischen();
     turtle1.clear();
@@ -607,6 +688,7 @@ public class TurtleMemory extends Application {
     int XOffset = 0;
     int YOffset = 0;
     turtle1.moveto(x,y);
+    
     if (Buchstabe=='A') {
       if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -10.0, (float) 10.0, (float) 0.0, (float) -6.0, (float) 6.0));
@@ -838,6 +920,7 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 11.666667, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == ';') {
+      turtle1.setAnimated(false);
       if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -49.0, (float) -10.0, (float) 17.0, (float) -23.0, (float) -18.0, (float) 0.0, (float) -23.0, (float) -10.0, (float) 25.0, (float) 69.0, (float) 33.0, (float) 87.0, (float) 43.0, (float) 42.0, (float) 57.0, (float) 61.0, (float) 73.0, (float) 18.0, (float) 16.0, (float) 42.0, (float) 43.0, (float) -7.0, (float) -7.0, (float) -5.0, (float) -6.0, (float) 40.0, (float) 40.0, (float) 18.0, (float) 18.0));
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -35.0, (float) -64.0, (float) -20.0, (float) 7.0, (float) -13.0, (float) -26.0, (float) -38.0, (float) -19.0, (float) -19.0, (float) -1.0, (float) -64.0, (float) -51.0, (float) -49.0, (float) -25.0, (float) -43.0, (float) -15.0, (float) -38.0, (float) 61.0, (float) 7.0, (float) 25.0, (float) 13.0, (float) 23.0, (float) 12.0, (float) 49.0, (float) 61.0, (float) 48.0, (float) 58.0, (float) 59.0, (float) 81.0));
@@ -845,6 +928,7 @@ public class TurtleMemory extends Application {
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
     if (Buchstabe == '0') {
+      turtle1.setAnimated(false);
       if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -23.0, (float) 23.0, (float) 23.0, (float) -23.0, (float) -4.0, (float) -4.0, (float) 7.0));
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -9.0, (float) -9.0, (float) 9.0, (float) 9.0, (float) -5.0, (float) 5.0, (float) 0.0));
@@ -857,6 +941,7 @@ public class TurtleMemory extends Application {
     int XOffset = 0;
     int YOffset = 0;
     turtle1.moveto(x,y);
+    
     if (Tier == "Huhn") {
       if (OffsetTrue) { XOffset = (int) (0.0 * size); YOffset = (int) (0.0 * size); }
       ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 0.0, (float) 22.259998, (float) 31.8, (float) 31.8, (float) 31.8, (float) 22.259998, (float) 22.259998, (float) 22.259998, (float) -19.079998, (float) -19.079998, (float) 19.079998, (float) 19.079998, (float) 19.079998, (float) 19.079998, (float) -18.55, (float) -18.55, (float) 0.0, (float) 0.0, (float) -12.719999, (float) 13.779999, (float) -10.599999, (float) 39.749996, (float) -6.8899994, (float) 7.4199996, (float) -34.98, (float) 7.95));
@@ -887,6 +972,16 @@ public class TurtleMemory extends Application {
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 97.0, (float) -17.0, (float) -457.0, (float) 7.0, (float) 5.0, (float) -112.0, (float) -112.0, (float) 0.0, (float) -111.0, (float) -61.0, (float) -65.0, (float) -60.0, (float) -34.0, (float) -20.0, (float) -20.0, (float) 63.0, (float) 33.0, (float) 33.0, (float) 63.0, (float) 45.0, (float) 48.0, (float) 48.0, (float) 45.0));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-65, 1, 0, -10, 3, 2, -50, 4, 5, -25, 6, 7, -50, 8, 3, -25, 9, 10, 11, 12, 13, 12, 14, 12, -100, 15, 16, -100, 17, 18, -100, 19, 20, -100, 21, 22));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 125, XCoordinates, YCoordinates, Paths);
+    } // end of if
+  }
+  
+  private void UIElementZeichenen(String Element, int x, int y, int size) {
+    turtle1.setAnimated(false);
+    if (Element == "Leaderboard") {
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -112.0, (float) -112.0, (float) -40.0, (float) -40.0, (float) 40.0, (float) 40.0, (float) -40.0, (float) 40.0, (float) 112.0, (float) 112.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 0.0, (float) 56.0, (float) 56.0, (float) 0.0, (float) 0.0, (float) 100.0, (float) 100.0, (float) 44.0, (float) 44.0, (float) 0.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 6, 3, 6, 5, 4, 5, 3, 4, 8, 7, 8, 9, 4, 9));
+      PointDrawer(x, y, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
     } // end of if
   }
   
@@ -984,6 +1079,10 @@ public class TurtleMemory extends Application {
       } // end of if
       
       RedrawService(ButtonIndex + 1);
+      if (checkBox1.isSelected()) {
+        turtle1.setAnimated(true);
+        turtle1.setAnimationspeed(300);
+      } // end of if
       KartenelementEnfügen(ButtonIndex);  
     } // end of if
     if (StellenAufgedeckt[ButtonIndex] == false) {
@@ -1027,6 +1126,7 @@ public class TurtleMemory extends Application {
   }
   private void RedrawService(int ClickIndex) {
     turtle1.clear();
+    turtle1.setAnimated(false);
     SpielfeldZeichnen();
     List<Integer> Ausnahmen = new ArrayList<>();
     for (int i = 0; i < AleadySolvedButtonIndexes.size(); i++) {
@@ -1054,28 +1154,50 @@ public class TurtleMemory extends Application {
   }
   
   private void DisplayWin() {
-    turtle1.clear();
-    SetWinScreenUIVisibility(true);
-    SetMemoryUIVisibility(false);
-    setStartScreenUIVisibily(false);
-    SetSettingsScreenVisibility(false);
-    l10.setText("" + LowestTurns);
-    lTurns10.setText("Turns: " + Turns);
-    int XOffset = 0; int YOffset = 0;
-    ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -25.0, (float) 25.0, (float) 25.0, (float) -25.0, (float) -10.0, (float) 10.0, (float) 10.396826, (float) 5.0, (float) 0.0, (float) -5.0, (float) -10.0));
-    ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 13.0, (float) 13.0, (float) -13.0, (float) -13.0, (float) 17.0, (float) 17.0, (float) 27.0, (float) 22.0, (float) 27.0, (float) 22.0, (float) 27.0));
-    ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 5, 8, 7, 6, 7, 9, 8, 9, 10, 4, 10));
-    PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths);
-    BuchstabenZeichenen(';', -20,-210, 40, false);
+    HideUI();
+    if (comboBox2.getValue() == "Singleplayer") {
+      SetWinScreenUIVisibility(true);
+      l10.setText("" + LowestTurns);
+      lTurns10.setText("Turns: " + Turns);
+      int XOffset = 0; int YOffset = 0;
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -25.0, (float) 25.0, (float) 25.0, (float) -25.0, (float) -10.0, (float) 10.0, (float) 10.396826, (float) 5.0, (float) 0.0, (float) -5.0, (float) -10.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) 13.0, (float) 13.0, (float) -13.0, (float) -13.0, (float) 17.0, (float) 17.0, (float) 27.0, (float) 22.0, (float) 27.0, (float) 22.0, (float) 27.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 1, 2, 3, 0, 3, 4, 5, 6, 5, 8, 7, 6, 7, 9, 8, 9, 10, 4, 10));
+      PointDrawer(XOffset,YOffset, (float)8, XCoordinates, YCoordinates, Paths);
+      BuchstabenZeichenen(';', -20,-210, 40, false);
+    }
+    if (comboBox2.getValue() == "Multiplayer") {
+      SetMutiplayerLeaderboardVisibility(true);
+      lPlayer1.setText(LeaderboardNames[0]);
+      lScore1.setText("" + SortedLeaderboard[0]);
+      lScore2.setText("" + SortedLeaderboard[1]);
+      lPlayer2.setText(LeaderboardNames[1]);
+      if (totalNumberOfPlayers > 2) {
+        lPlayer3.setText(LeaderboardNames[2]);
+        lScore3.setText("" + SortedLeaderboard[2]);
+      } // end of if 
+      nEckZeichnen(-280,-280,4,2200,0,100);
+      nEckZeichnen(-280,-70,2,1100,0,100);
+      nEckZeichnen(60,-70,2,680,90,100);
+      UIElementZeichenen("Leaderboard", -100, 20, 80);
+      BuchstabenZeichenen(';', -20,-330, 30, false);
+    }
     
   }
   
-  public void DisplaySettings() {
+  public void HideUI() {
+    turtle1.clear();
+    SetMutiplayerLeaderboardVisibility(false);
     SetWinScreenUIVisibility(false);
     SetMemoryUIVisibility(false);
     setStartScreenUIVisibily(false);
+    SetSettingsScreenVisibility(false);
+  }
+  
+  public void DisplaySettings() {
+    HideUI();
+    turtle1.setAnimated(false);
     SetSettingsScreenVisibility(true);
-    turtle1.clear();
     nEckZeichnen(-200,-200,4,1500,0,100);
     nEckZeichnen(-200,-80,2,750,0,100);
     BuchstabenZeichenen(';',-30,-270,40,false);
@@ -1135,7 +1257,7 @@ public class TurtleMemory extends Application {
       numberField2.setVisible(false);
       lCurrentturns.setVisible(false);
     } // end of if
-    if (LowestTurns > 0) {
+    if (LowestTurns > 0 && comboBox2.getValue() == "Singleplayer") {
       numberField3.setVisible(visisble);
       lHighscore.setVisible(visisble);    
     } // end of if
@@ -1144,11 +1266,41 @@ public class TurtleMemory extends Application {
       lHighscore.setVisible(false);
     } // end of if-else
     bQuit.setVisible(visisble);
+    lEnablerealtimedrawing.setVisible(visisble);
+    checkBox1.setVisible(visisble);
     if (visisble == false || comboBox2.getValue() == "Multiplayer") {
       lItsPlayer1sturn.setVisible(visisble);
       listView1.setVisible(visisble);
       lLeaderboard.setVisible(visisble);
     } // end of if
+  }
+  
+  public void SetMutiplayerLeaderboardVisibility(boolean visible) {
+    bStartScreen.setVisible(visible);
+    listView1.setVisible(visible);
+    lPodium.setVisible(visible);
+    lLeaderboard1.setVisible(visible);
+    lPlayer1.setVisible(visible);
+    lPlayer2.setVisible(visible);
+    lPlayer3.setVisible(visible);
+    lScore1.setVisible(visible);
+    lScore2.setVisible(visible);
+    lScore3.setVisible(visible);
+    if (totalNumberOfPlayers < 3) {
+      lPlayer3.setVisible(false);
+      lScore3.setVisible(false);
+    } // end of if
+    if (visible) {
+      bStartScreen.setLayoutX(300);
+      bStartScreen.setLayoutY(580);
+      listView1.setLayoutX(500);
+      listView1.setLayoutY(280);
+    } else {
+      bStartScreen.setLayoutX(288);
+      bStartScreen.setLayoutY(440);
+      listView1.setLayoutX(661);
+      listView1.setLayoutY(859);
+    } // end of if-else
   }
   
   public void setStartScreenUIVisibily(boolean visible) {
@@ -1203,15 +1355,14 @@ public class TurtleMemory extends Application {
       SortedLeaderboard[n-i-1] = temp;
       SortedNames[n-i-1] = nameTemp;
     }
+    LeaderboardNames = SortedNames;
     return SortedNames;
   }  
     
   public void SwitchToStartScreen() {
-    SetWinScreenUIVisibility(false);
-    SetMemoryUIVisibility(false);
-    SetSettingsScreenVisibility(false);
+    HideUI();
+    turtle1.setAnimated(false);
     setStartScreenUIVisibily(true);
-    turtle1.clear();
     BuchstabenZeichenen(';', -20,-180, 50, false);
     BuchstabenZeichenen('0', 0, -40, 60, false);
     nEckZeichnen(-250,-250,4,2000,0,(float)100);
@@ -1219,10 +1370,9 @@ public class TurtleMemory extends Application {
   }
       
   public void StartGame() {
-    setStartScreenUIVisibily(false);
-    SetSettingsScreenVisibility(false);
+    HideUI();
+    turtle1.setAnimated(false);
     SetMemoryUIVisibility(true);
-    SetWinScreenUIVisibility(false);
     GameMode = comboBox1.getValue();
     NewGame();
   }
