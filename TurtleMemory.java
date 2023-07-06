@@ -63,7 +63,7 @@ public class TurtleMemory extends Application {
   private char[] Buchstaben = new char[16];
   private char[] AlleBuchstaben = {'A', 'B', 'C', 'D', 'E','F', 'G','H','I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   private String[] Tiere = new String[16];
-  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege", "Otter", "Giraffe"};
+  private String[] AlleTiere = {"Huhn", "Schwein", "Ziege", "Otter", "Giraffe", "Hamster"};
   private boolean[] BuchstabenBefüllt = new boolean[16];
   private int KartenAnzahlZähler = 0;
   private int score = 0;
@@ -980,6 +980,13 @@ public class TurtleMemory extends Application {
       ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -69.159996, (float) -28.599998, (float) -70.72, (float) -54.6, (float) -53.039997, (float) -91.0, (float) -72.28, (float) -50.96, (float) 27.039999, (float) 27.039999, (float) -54.6, (float) -54.6, (float) 68.64, (float) 67.6, (float) 58.239998, (float) 15.599999, (float) 43.68, (float) 107.119995, (float) 63.96, (float) -6.7599998, (float) 62.399998, (float) 63.96, (float) 85.799995, (float) 85.799995, (float) 63.96, (float) 62.399998, (float) 85.799995, (float) 85.799995, (float) 34.84, (float) 20.8, (float) 20.8, (float) 34.84, (float) 27.039999, (float) 28.079998, (float) 27.039999, (float) 28.079998, (float) -54.6, (float) -54.6, (float) -68.119995, (float) -68.119995, (float) -68.119995, (float) -68.119995, (float) -54.6, (float) -54.6));
       ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-30, 0, 1, -20, 2, 3, -30, 4, 5, -20, 7, 6, 8, 10, 9, 11, -50, 9, 8, -15, 13, 12, -15, 14, 15, -15, 16, 17, -15, 18, 19, 20, 23, 21, 22, -50, 22, 23, -50, 26, 27, 24, 27, 25, 26, -100, 28, 29, -100, 30, 31, -100, 32, 33, -100, 34, 35, -50, 37, 36, -50, 39, 38, 39, 36, 38, 37, -50, 41, 40, 41, 42, -50, 43, 42, 43, 40));
       PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 70.0, XCoordinates, YCoordinates, Paths);
+    } // end of if
+    if (Tier == "Hamster") {
+      if (OffsetTrue) { XOffset = (int) (-0.05 * size); YOffset = (int) (-0.28285713 * size); }
+      ArrayList<Float> XCoordinates = new ArrayList<Float>(Arrays.asList((float) -79.0, (float) 80.0, (float) 168.0, (float) 76.0, (float) 0.0, (float) 108.0, (float) 78.0, (float) 119.0, (float) 75.0, (float) -54.0, (float) -63.0, (float) -101.0, (float) 25.0, (float) -100.0, (float) -15.0, (float) -100.0, (float) -38.0, (float) -26.0, (float) -14.0, (float) -24.0, (float) 0.0, (float) 11.0, (float) 11.0, (float) -1.0, (float) 39.0, (float) 48.79365, (float) 28.0, (float) 38.0, (float) -62.0, (float) -62.0, (float) 62.0, (float) 62.0, (float) 0.0, (float) 25.0, (float) -25.0, (float) 15.0, (float) -15.0, (float) -61.0, (float) -61.0, (float) 61.0, (float) 61.0));
+      ArrayList<Float> YCoordinates = new ArrayList<Float>(Arrays.asList((float) -60.0, (float) 420.0, (float) 600.0, (float) -61.0, (float) 115.0, (float) 90.0, (float) 155.0, (float) 147.0, (float) 116.0, (float) -81.0, (float) 108.0, (float) 136.0, (float) -44.0, (float) 77.0, (float) 76.0, (float) 136.0, (float) 124.0, (float) 129.0, (float) 98.0, (float) 95.0, (float) 134.0, (float) 134.0, (float) 89.0, (float) 89.0, (float) 131.0, (float) 128.0, (float) 100.0, (float) 95.0, (float) 52.0, (float) 24.0, (float) 24.0, (float) 52.0, (float) -12.0, (float) -12.0, (float) -12.0, (float) 0.0, (float) 0.0, (float) 40.0, (float) 38.0, (float) 38.0, (float) 40.0));
+      ArrayList<Integer> Paths = new ArrayList<Integer>(Arrays.asList(-10, 0, 1, -30, 3, 4, -30, 5, 6, 7, 8, -20, 8, 9, 10, 11, -30, 13, 12, -20, 15, 14, 16, 19, 17, 18, -50, 19, 18, 20, 23, 21, 22, -50, 23, 22, 24, 26, 25, 27, -50, 26, 27, -100, 28, 29, -100, 30, 31, -50, 32, 33, -50, 34, 32, 32, 35, 32, 36, -100, 37, 38, -100, 39, 40));
+      PointDrawer(x + XOffset, y + YOffset, (float) size / (float) 109.375, XCoordinates, YCoordinates, Paths);
     } // end of if
   }
   
